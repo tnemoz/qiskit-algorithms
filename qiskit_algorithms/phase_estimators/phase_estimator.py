@@ -13,8 +13,11 @@
 """The Phase Estimator interface."""
 
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
+
 from qiskit.circuit import QuantumCircuit
+
 from qiskit_algorithms.algorithm_result import AlgorithmResult
 
 
@@ -34,7 +37,7 @@ class PhaseEstimator(ABC):
         self,
         unitary: QuantumCircuit,
         state_preparation: QuantumCircuit | None = None,
-    ) -> "PhaseEstimatorResult":
+    ) -> PhaseEstimatorResult:
         """Estimate the phase."""
         raise NotImplementedError
 

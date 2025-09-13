@@ -13,23 +13,22 @@
 """Test TrotterQRTE."""
 
 import unittest
-from test import QiskitAlgorithmsTestCase
 
-from ddt import ddt, data, unpack
 import numpy as np
-from scipy.linalg import expm
+from ddt import data, ddt, unpack
 from numpy.testing import assert_raises
-
 from qiskit import QuantumCircuit
-from qiskit.circuit.library import ZGate
-from qiskit.quantum_info import Statevector, Pauli, SparsePauliOp
 from qiskit.circuit import Parameter
+from qiskit.circuit.library import ZGate
 from qiskit.primitives import StatevectorEstimator
-from qiskit.synthesis import SuzukiTrotter, QDrift
+from qiskit.quantum_info import Pauli, SparsePauliOp, Statevector
+from qiskit.synthesis import QDrift, SuzukiTrotter
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from scipy.linalg import expm
 
 from qiskit_algorithms import TimeEvolutionProblem, TrotterQRTE
 from qiskit_algorithms.utils import algorithm_globals
+from test import QiskitAlgorithmsTestCase  # pylint: disable=wrong-import-order
 
 
 @ddt
@@ -70,7 +69,7 @@ class TestTrotterQRTE(QiskitAlgorithmsTestCase):
     @unpack
     def test_trotter_qrte_trotter(self, operator, t_param):
         """Test for default TrotterQRTE on a single qubit with auxiliary operators."""
-        if not t_param is None:
+        if t_param is not None:
             operator = SparsePauliOp(operator.paulis, np.array([t_param, 1]))
 
         # LieTrotter with 1 rep

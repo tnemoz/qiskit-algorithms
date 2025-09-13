@@ -15,10 +15,10 @@
 from collections.abc import Iterable
 
 import numpy as np
-from qiskit.primitives import BaseEstimatorV2, EstimatorPubLike, PrimitiveResult, PubResult, DataBin
+from qiskit.primitives import BaseEstimatorV2, DataBin, EstimatorPubLike, PrimitiveResult, PubResult
 from qiskit.primitives.containers.estimator_pub import EstimatorPub
 from qiskit.primitives.containers.object_array import object_array
-from qiskit.quantum_info import SparsePauliOp, PauliList
+from qiskit.quantum_info import PauliList, SparsePauliOp
 
 
 def run_estimator_job(

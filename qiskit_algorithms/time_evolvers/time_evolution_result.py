@@ -1,6 +1,6 @@
 # This code is part of a Qiskit project.
 #
-# (C) Copyright IBM 2021, 2023.
+# (C) Copyright IBM 2021, 2025.
 #
 # This code is licensed under the Apache License, Version 2.0. You may
 # obtain a copy of this license in the LICENSE.txt file in the root directory
@@ -12,11 +12,13 @@
 
 """Class for holding time evolution result."""
 from __future__ import annotations
-import numpy as np
 
+import numpy as np
 from qiskit import QuantumCircuit
 from qiskit.quantum_info import Statevector
+
 from qiskit_algorithms.list_or_dict import ListOrDict
+
 from ..algorithm_result import AlgorithmResult
 
 

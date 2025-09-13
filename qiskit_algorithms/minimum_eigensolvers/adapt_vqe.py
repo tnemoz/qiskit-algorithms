@@ -16,9 +16,8 @@ from __future__ import annotations
 import logging
 import re
 import warnings
-from collections.abc import Sequence
+from collections.abc import Iterable, Sequence
 from enum import Enum
-from typing import Iterable
 
 import numpy as np
 from qiskit import QuantumCircuit
@@ -30,10 +29,11 @@ from qiskit.version import get_version_info as get_qiskit_version_info
 from qiskit_algorithms.exceptions import AlgorithmError
 from qiskit_algorithms.list_or_dict import ListOrDict
 from qiskit_algorithms.utils.validation import validate_min
-from .minimum_eigensolver import MinimumEigensolver
-from .vqe import VQE, VQEResult
+
 from ..observables_evaluator import estimate_observables
 from ..variational_algorithm import VariationalAlgorithm
+from .minimum_eigensolver import MinimumEigensolver
+from .vqe import VQE, VQEResult
 
 logger = logging.getLogger(__name__)
 

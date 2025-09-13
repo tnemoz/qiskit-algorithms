@@ -13,11 +13,11 @@
 """Evaluator of observables for algorithms."""
 
 from __future__ import annotations
+
 from collections.abc import Sequence
 from typing import Any
 
 import numpy as np
-
 from qiskit import QuantumCircuit
 from qiskit.primitives import BaseEstimatorV2
 from qiskit.quantum_info import SparsePauliOp

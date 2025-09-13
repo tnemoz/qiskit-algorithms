@@ -1,6 +1,6 @@
 # This code is part of a Qiskit project.
 #
-# (C) Copyright IBM 2023.
+# (C) Copyright IBM 2023, 2025.
 #
 # This code is licensed under the Apache License, Version 2.0. You may
 # obtain a copy of this license in the LICENSE.txt file in the root directory
@@ -19,10 +19,9 @@ from enum import Enum
 
 from qiskit.circuit import Parameter
 
+from ..var_qte_linear_solver import VarQTELinearSolver
 from .abstract_ode_function import AbstractOdeFunction
 from .ode_function import OdeFunction
-
-from ..var_qte_linear_solver import VarQTELinearSolver
 
 
 class OdeFunctionType(Enum):

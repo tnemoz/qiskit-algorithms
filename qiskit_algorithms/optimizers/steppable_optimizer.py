@@ -13,10 +13,11 @@
 """SteppableOptimizer interface"""
 from __future__ import annotations
 
-from abc import abstractmethod, ABC
+from abc import ABC, abstractmethod
 from collections.abc import Callable
 from dataclasses import dataclass
-from .optimizer import Optimizer, POINT, OptimizerResult
+
+from .optimizer import POINT, Optimizer, OptimizerResult
 
 
 @dataclass

@@ -21,23 +21,21 @@ from collections.abc import Sequence
 from typing import Any
 
 import numpy as np
-
 from qiskit.circuit import Parameter, ParameterExpression, QuantumCircuit
 from qiskit.primitives import BaseEstimatorV2
 from qiskit.transpiler.passes import TranslateParameterizedGates
 
-from .qgt_result import QGTResult
+from ...algorithm_job import AlgorithmJob
+from ...custom_types import Transpiler
+from ...utils.circuit_key import _circuit_key
 from ..utils import (
     DerivativeType,
     GradientCircuit,
     _assign_unique_parameters,
-    _make_gradient_parameters,
     _make_gradient_parameter_values,
+    _make_gradient_parameters,
 )
-
-from ...algorithm_job import AlgorithmJob
-from ...custom_types import Transpiler
-from ...utils.circuit_key import _circuit_key
+from .qgt_result import QGTResult
 
 
 class BaseQGT(ABC):

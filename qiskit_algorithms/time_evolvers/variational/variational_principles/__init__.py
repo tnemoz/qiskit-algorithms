@@ -1,6 +1,6 @@
 # This code is part of a Qiskit project.
 #
-# (C) Copyright IBM 2023.
+# (C) Copyright IBM 2023, 2025.
 #
 # This code is licensed under the Apache License, Version 2.0. You may
 # obtain a copy of this license in the LICENSE.txt file in the root directory
@@ -12,11 +12,11 @@
 
 """Variational Principles"""
 
-from .variational_principle import VariationalPrinciple
 from .imaginary_mc_lachlan_principle import ImaginaryMcLachlanPrinciple
 from .imaginary_variational_principle import ImaginaryVariationalPrinciple
 from .real_mc_lachlan_principle import RealMcLachlanPrinciple
 from .real_variational_principle import RealVariationalPrinciple
+from .variational_principle import VariationalPrinciple
 
 __all__ = [
     "VariationalPrinciple",

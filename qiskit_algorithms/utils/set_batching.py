@@ -1,6 +1,6 @@
 # This code is part of a Qiskit project.
 #
-# (C) Copyright IBM 2022, 2023.
+# (C) Copyright IBM 2022, 2025.
 #
 # This code is licensed under the Apache License, Version 2.0. You may
 # obtain a copy of this license in the LICENSE.txt file in the root directory
@@ -12,7 +12,7 @@
 
 """Set default batch sizes for the optimizers."""
 
-from qiskit_algorithms.optimizers import Optimizer, SPSA
+from qiskit_algorithms.optimizers import SPSA, Optimizer
 
 
 def _set_default_batchsize(optimizer: Optimizer) -> bool:

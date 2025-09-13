@@ -1,6 +1,6 @@
 # This code is part of a Qiskit project.
 #
-# (C) Copyright IBM 2018, 2023.
+# (C) Copyright IBM 2018, 2025.
 #
 # This code is licensed under the Apache License, Version 2.0. You may
 # obtain a copy of this license in the LICENSE.txt file in the root directory
@@ -13,18 +13,19 @@
 """The Amplitude Estimation interface."""
 
 from __future__ import annotations
-from abc import abstractmethod, ABC
+
+from abc import ABC, abstractmethod
 from collections.abc import Callable
 
-from .estimation_problem import EstimationProblem
 from ..algorithm_result import AlgorithmResult
+from .estimation_problem import EstimationProblem
 
 
 class AmplitudeEstimator(ABC):
     """The Amplitude Estimation interface."""
 
     @abstractmethod
-    def estimate(self, estimation_problem: EstimationProblem) -> "AmplitudeEstimatorResult":
+    def estimate(self, estimation_problem: EstimationProblem) -> AmplitudeEstimatorResult:
         """Run the amplitude estimation algorithm.
 
         Args:

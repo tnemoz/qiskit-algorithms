@@ -13,22 +13,21 @@
 """Test Variational Quantum Real Time Evolution algorithm."""
 
 import unittest
-from test import QiskitAlgorithmsTestCase
 
-from ddt import ddt
 import numpy as np
-
+from ddt import ddt
 from qiskit import QuantumCircuit, generate_preset_pass_manager
 from qiskit.circuit import Parameter, ParameterVector
 from qiskit.circuit.library import efficient_su2
 from qiskit.primitives import StatevectorEstimator
-from qiskit.quantum_info import SparsePauliOp, Pauli, Statevector
 from qiskit.providers.fake_provider import GenericBackendV2
+from qiskit.quantum_info import Pauli, SparsePauliOp, Statevector
 
-from qiskit_algorithms.gradients import LinCombQGT, DerivativeType, LinCombEstimatorGradient
 from qiskit_algorithms import TimeEvolutionProblem, VarQRTE
+from qiskit_algorithms.gradients import DerivativeType, LinCombEstimatorGradient, LinCombQGT
 from qiskit_algorithms.time_evolvers.variational import RealMcLachlanPrinciple
 from qiskit_algorithms.utils import algorithm_globals
+from test import QiskitAlgorithmsTestCase  # pylint: disable=wrong-import-order
 
 
 @ddt
@@ -38,7 +37,6 @@ class TestVarQRTE(QiskitAlgorithmsTestCase):
     def setUp(self):
         super().setUp()
         self.seed = 11
-        np.random.seed(self.seed)
 
     def test_time_dependent_hamiltonian(self):
         """Simple test case with a time dependent Hamiltonian."""

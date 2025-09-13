@@ -13,23 +13,22 @@
 """QGT with the classically efficient reverse mode."""
 
 from __future__ import annotations
-from collections.abc import Sequence
-from typing import cast, List
+
 import logging
+from collections.abc import Sequence
+from typing import cast
 
 import numpy as np
-
-from qiskit.circuit import QuantumCircuit, Parameter
-from qiskit.quantum_info import Statevector
+from qiskit.circuit import Parameter, QuantumCircuit
 from qiskit.primitives import StatevectorEstimator
+from qiskit.quantum_info import Statevector
 
 from ..base.base_qgt import BaseQGT
 from ..base.qgt_result import QGTResult
 from ..utils import DerivativeType
-
-from .split_circuits import split
 from .bind import bind
 from .derive_circuit import derive_circuit
+from .split_circuits import split
 
 logger = logging.getLogger(__name__)
 
@@ -114,7 +113,7 @@ class ReverseQGT(BaseQGT):
 
             # initialize the state variables -- naming convention is the same as the paper
             parameter_binds = dict(zip(circuit.parameters, values))
-            bound_unitaries = cast(List[QuantumCircuit], bind(unitaries, parameter_binds))
+            bound_unitaries = cast(list[QuantumCircuit], bind(unitaries, parameter_binds))
 
             chi = Statevector(bound_unitaries[0])
             psi = chi.copy()

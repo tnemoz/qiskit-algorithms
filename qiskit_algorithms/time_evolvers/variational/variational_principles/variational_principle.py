@@ -1,6 +1,6 @@
 # This code is part of a Qiskit project.
 #
-# (C) Copyright IBM 2023.
+# (C) Copyright IBM 2023, 2025.
 #
 # This code is licensed under the Apache License, Version 2.0. You may
 # obtain a copy of this license in the LICENSE.txt file in the root directory
@@ -17,7 +17,6 @@ from abc import ABC, abstractmethod
 from collections.abc import Sequence
 
 import numpy as np
-
 from qiskit import QuantumCircuit
 from qiskit.circuit import Parameter
 from qiskit.quantum_info.operators.base_operator import BaseOperator

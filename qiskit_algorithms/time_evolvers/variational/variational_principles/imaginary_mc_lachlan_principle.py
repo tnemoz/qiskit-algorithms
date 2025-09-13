@@ -14,26 +14,23 @@
 from __future__ import annotations
 
 import warnings
-
 from collections.abc import Sequence
 
 import numpy as np
-
 from qiskit import QuantumCircuit
 from qiskit.circuit import Parameter
 from qiskit.primitives import StatevectorEstimator
 from qiskit.quantum_info.operators.base_operator import BaseOperator
-
-from .imaginary_variational_principle import ImaginaryVariationalPrinciple
 
 from ....exceptions import AlgorithmError
 from ....gradients import (
     BaseEstimatorGradient,
     BaseQGT,
     DerivativeType,
-    LinCombQGT,
     LinCombEstimatorGradient,
+    LinCombQGT,
 )
+from .imaginary_variational_principle import ImaginaryVariationalPrinciple
 
 
 class ImaginaryMcLachlanPrinciple(ImaginaryVariationalPrinciple):

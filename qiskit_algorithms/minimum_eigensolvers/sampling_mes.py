@@ -1,6 +1,6 @@
 # This code is part of a Qiskit project.
 #
-# (C) Copyright IBM 2022, 2023.
+# (C) Copyright IBM 2022, 2025.
 #
 # This code is licensed under the Apache License, Version 2.0. You may
 # obtain a copy of this license in the LICENSE.txt file in the root directory
@@ -13,12 +13,14 @@
 """The Sampling Minimum Eigensolver interface."""
 
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from collections.abc import Mapping
 from typing import Any
 
 from qiskit.quantum_info.operators.base_operator import BaseOperator
 from qiskit.result import QuasiDistribution
+
 from ..algorithm_result import AlgorithmResult
 from ..list_or_dict import ListOrDict
 
@@ -31,7 +33,7 @@ class SamplingMinimumEigensolver(ABC):
         self,
         operator: BaseOperator,
         aux_operators: ListOrDict[BaseOperator] | None = None,
-    ) -> "SamplingMinimumEigensolverResult":
+    ) -> SamplingMinimumEigensolverResult:
         """Compute the minimum eigenvalue of a diagonal operator.
 
         Args:

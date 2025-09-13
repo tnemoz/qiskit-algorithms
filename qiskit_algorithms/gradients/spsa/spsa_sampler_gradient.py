@@ -19,15 +19,13 @@ from collections.abc import Sequence
 from typing import Any
 
 import numpy as np
-
 from qiskit.circuit import Parameter, QuantumCircuit
 from qiskit.primitives import BaseSamplerV2
 
+from ...custom_types import Transpiler
+from ...exceptions import AlgorithmError
 from ..base.base_sampler_gradient import BaseSamplerGradient
 from ..base.sampler_gradient_result import SamplerGradientResult
-from ...custom_types import Transpiler
-
-from ...exceptions import AlgorithmError
 
 
 class SPSASamplerGradient(BaseSamplerGradient):

@@ -1,6 +1,6 @@
 # This code is part of a Qiskit project.
 #
-# (C) Copyright IBM 2019, 2024.
+# (C) Copyright IBM 2019, 2025.
 #
 # This code is licensed under the Apache License, Version 2.0. You may
 # obtain a copy of this license in the LICENSE.txt file in the root directory
@@ -13,13 +13,14 @@
 """The Adam and AMSGRAD optimizers."""
 from __future__ import annotations
 
+import csv
+import os
 from collections.abc import Callable
 from typing import Any
-import os
 
-import csv
 import numpy as np
-from .optimizer import Optimizer, OptimizerSupportLevel, OptimizerResult, POINT
+
+from .optimizer import POINT, Optimizer, OptimizerResult, OptimizerSupportLevel
 
 # pylint: disable=invalid-name
 

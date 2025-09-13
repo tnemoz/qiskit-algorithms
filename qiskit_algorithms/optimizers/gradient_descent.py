@@ -13,13 +13,15 @@
 """A standard gradient descent optimizer."""
 from __future__ import annotations
 
-from collections.abc import Generator
+from collections.abc import Callable, Generator
 from dataclasses import dataclass, field
-from typing import Any, Callable, SupportsFloat
+from typing import Any, SupportsFloat
+
 import numpy as np
-from .optimizer import Optimizer, OptimizerSupportLevel, OptimizerResult, POINT
-from .steppable_optimizer import AskData, TellData, OptimizerState, SteppableOptimizer
+
+from .optimizer import POINT, Optimizer, OptimizerResult, OptimizerSupportLevel
 from .optimizer_utils import LearningRate
+from .steppable_optimizer import AskData, OptimizerState, SteppableOptimizer, TellData
 
 CALLBACK = Callable[[int, np.ndarray, float, SupportsFloat], None]
 

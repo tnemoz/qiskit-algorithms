@@ -1,6 +1,6 @@
 # This code is part of a Qiskit project.
 #
-# (C) Copyright IBM 2022, 2024.
+# (C) Copyright IBM 2022, 2025.
 #
 # This code is licensed under the Apache License, Version 2.0. You may
 # obtain a copy of this license in the LICENSE.txt file in the root directory
@@ -13,11 +13,12 @@
 """Split a circuit into subcircuits, each containing a single parameterized gate."""
 
 from __future__ import annotations
+
 import itertools
 from collections.abc import Sequence
 
-from qiskit.circuit import QuantumCircuit, Parameter, Gate, ParameterExpression
-from qiskit.circuit.library import RXGate, RYGate, RZGate, CRXGate, CRYGate, CRZGate
+from qiskit.circuit import Gate, Parameter, ParameterExpression, QuantumCircuit
+from qiskit.circuit.library import CRXGate, CRYGate, CRZGate, RXGate, RYGate, RZGate
 
 
 def gradient_lookup(gate: Gate) -> list[tuple[complex, QuantumCircuit]]:

@@ -14,18 +14,17 @@
 """The Iterative Quantum Phase Estimation Algorithm."""
 
 from __future__ import annotations
+
 from typing import Any
 
 import numpy
-
 from qiskit.circuit import ClassicalRegister, QuantumCircuit, QuantumRegister
 from qiskit.primitives import BaseSamplerV2
 
 from qiskit_algorithms.exceptions import AlgorithmError
 
-from .phase_estimator import PhaseEstimator
-from .phase_estimator import PhaseEstimatorResult
 from ..custom_types import Transpiler
+from .phase_estimator import PhaseEstimator, PhaseEstimatorResult
 
 
 class IterativePhaseEstimation(PhaseEstimator):
@@ -159,7 +158,7 @@ class IterativePhaseEstimation(PhaseEstimator):
     # pylint: disable=signature-differs
     def estimate(
         self, unitary: QuantumCircuit, state_preparation: QuantumCircuit | None = None
-    ) -> "IterativePhaseEstimationResult":
+    ) -> IterativePhaseEstimationResult:
         """
         Estimate the eigenphase of the input unitary and initial-state pair.
 

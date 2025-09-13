@@ -1,6 +1,6 @@
 # This code is part of a Qiskit project.
 #
-# (C) Copyright IBM 2022, 2023
+# (C) Copyright IBM 2022, 2025.
 #
 # This code is licensed under the Apache License, Version 2.0. You may
 # obtain a copy of this license in the LICENSE.txt file in the root directory
@@ -97,6 +97,8 @@ from .base.base_estimator_gradient import BaseEstimatorGradient
 from .base.base_qgt import BaseQGT
 from .base.base_sampler_gradient import BaseSamplerGradient
 from .base.estimator_gradient_result import EstimatorGradientResult
+from .base.qgt_result import QGTResult
+from .base.sampler_gradient_result import SamplerGradientResult
 from .finite_diff.finite_diff_estimator_gradient import FiniteDiffEstimatorGradient
 from .finite_diff.finite_diff_sampler_gradient import FiniteDiffSamplerGradient
 from .lin_comb.lin_comb_estimator_gradient import DerivativeType, LinCombEstimatorGradient
@@ -106,12 +108,10 @@ from .param_shift.param_shift_estimator_gradient import ParamShiftEstimatorGradi
 from .param_shift.param_shift_sampler_gradient import ParamShiftSamplerGradient
 from .qfi import QFI
 from .qfi_result import QFIResult
-from .base.qgt_result import QGTResult
-from .base.sampler_gradient_result import SamplerGradientResult
-from .spsa.spsa_estimator_gradient import SPSAEstimatorGradient
-from .spsa.spsa_sampler_gradient import SPSASamplerGradient
 from .reverse.reverse_gradient import ReverseEstimatorGradient
 from .reverse.reverse_qgt import ReverseQGT
+from .spsa.spsa_estimator_gradient import SPSAEstimatorGradient
+from .spsa.spsa_sampler_gradient import SPSASamplerGradient
 
 __all__ = [
     "BaseEstimatorGradient",

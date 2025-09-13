@@ -13,18 +13,20 @@
 """The Iterative Quantum Amplitude Estimation Algorithm."""
 
 from __future__ import annotations
-from typing import cast, Callable, Tuple, Any
-import warnings
-import numpy as np
-from scipy.stats import beta
 
+import warnings
+from collections.abc import Callable
+from typing import Any, cast
+
+import numpy as np
 from qiskit import ClassicalRegister, QuantumCircuit
 from qiskit.primitives import BaseSamplerV2, StatevectorSampler
+from scipy.stats import beta
 
-from .amplitude_estimator import AmplitudeEstimator, AmplitudeEstimatorResult
-from .estimation_problem import EstimationProblem
 from ..custom_types import Transpiler
 from ..exceptions import AlgorithmError
+from .amplitude_estimator import AmplitudeEstimator, AmplitudeEstimatorResult
+from .estimation_problem import EstimationProblem
 
 
 class IterativeAmplitudeEstimation(AmplitudeEstimator):
@@ -268,9 +270,7 @@ class IterativeAmplitudeEstimation(AmplitudeEstimator):
 
         return int(one_counts), one_counts / sum(counts_dict.values())
 
-    def estimate(
-        self, estimation_problem: EstimationProblem
-    ) -> "IterativeAmplitudeEstimationResult":
+    def estimate(self, estimation_problem: EstimationProblem) -> IterativeAmplitudeEstimationResult:
         """Run the amplitude estimation algorithm on provided estimation problem.
 
         Args:
@@ -384,7 +384,7 @@ class IterativeAmplitudeEstimation(AmplitudeEstimator):
             a_intervals.append([a_l, a_u])
 
         # get the latest confidence interval for the estimate of a
-        confidence_interval = cast(Tuple[float, float], a_intervals[-1])
+        confidence_interval = cast(tuple[float, float], a_intervals[-1])
 
         # the final estimate is the mean of the confidence interval
         estimation = np.mean(confidence_interval)

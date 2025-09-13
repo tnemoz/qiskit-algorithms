@@ -1,6 +1,6 @@
 # This code is part of a Qiskit project.
 #
-# (C) Copyright IBM 2022, 2023.
+# (C) Copyright IBM 2022, 2025.
 #
 # This code is licensed under the Apache License, Version 2.0. You may
 # obtain a copy of this license in the LICENSE.txt file in the root directory
@@ -13,8 +13,8 @@
 """Common qiskit_algorithms utility functions."""
 
 from .algorithm_globals import algorithm_globals
-from .validate_initial_point import validate_initial_point
 from .validate_bounds import validate_bounds
+from .validate_initial_point import validate_initial_point
 
 __all__ = [
     "algorithm_globals",

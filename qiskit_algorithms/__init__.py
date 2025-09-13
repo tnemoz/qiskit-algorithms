@@ -251,75 +251,70 @@ Utility classes and function used by algorithms.
 """
 from .algorithm_job import AlgorithmJob
 from .algorithm_result import AlgorithmResult
-from .variational_algorithm import VariationalAlgorithm, VariationalResult
-from .amplitude_amplifiers import Grover, GroverResult, AmplificationProblem, AmplitudeAmplifier
+from .amplitude_amplifiers import AmplificationProblem, AmplitudeAmplifier, Grover, GroverResult
 from .amplitude_estimators import (
-    AmplitudeEstimator,
-    AmplitudeEstimatorResult,
     AmplitudeEstimation,
     AmplitudeEstimationResult,
+    AmplitudeEstimator,
+    AmplitudeEstimatorResult,
+    EstimationProblem,
     FasterAmplitudeEstimation,
     FasterAmplitudeEstimationResult,
     IterativeAmplitudeEstimation,
     IterativeAmplitudeEstimationResult,
     MaximumLikelihoodAmplitudeEstimation,
     MaximumLikelihoodAmplitudeEstimationResult,
-    EstimationProblem,
 )
-
-from .phase_estimators import (
-    HamiltonianPhaseEstimation,
-    HamiltonianPhaseEstimationResult,
-    PhaseEstimationScale,
-    PhaseEstimation,
-    PhaseEstimationResult,
-    IterativePhaseEstimation,
-)
-from .exceptions import AlgorithmError
-from .observables_evaluator import estimate_observables
-from .run_estimator_job import run_estimator_job
-
-from .time_evolvers import (
-    ImaginaryTimeEvolver,
-    RealTimeEvolver,
-    TimeEvolutionProblem,
-    TimeEvolutionResult,
-    PVQD,
-    PVQDResult,
-    SciPyImaginaryEvolver,
-    SciPyRealEvolver,
-    TrotterQRTE,
-    VarQITE,
-    VarQRTE,
-    VarQTE,
-    VarQTEResult,
-)
-
 from .eigensolvers import (
+    VQD,
     Eigensolver,
     EigensolverResult,
     NumPyEigensolver,
     NumPyEigensolverResult,
-    VQD,
     VQDResult,
 )
-
+from .exceptions import AlgorithmError
 from .minimum_eigensolvers import (
+    QAOA,
+    VQE,
     AdaptVQE,
     AdaptVQEResult,
     MinimumEigensolver,
     MinimumEigensolverResult,
     NumPyMinimumEigensolver,
     NumPyMinimumEigensolverResult,
-    QAOA,
     SamplingMinimumEigensolver,
     SamplingMinimumEigensolverResult,
     SamplingVQE,
     SamplingVQEResult,
-    VQE,
     VQEResult,
 )
-
+from .observables_evaluator import estimate_observables
+from .phase_estimators import (
+    HamiltonianPhaseEstimation,
+    HamiltonianPhaseEstimationResult,
+    IterativePhaseEstimation,
+    PhaseEstimation,
+    PhaseEstimationResult,
+    PhaseEstimationScale,
+)
+from .run_estimator_job import run_estimator_job
+from .time_evolvers import (
+    PVQD,
+    ImaginaryTimeEvolver,
+    PVQDResult,
+    RealTimeEvolver,
+    SciPyImaginaryEvolver,
+    SciPyRealEvolver,
+    TimeEvolutionProblem,
+    TimeEvolutionResult,
+    TrotterQRTE,
+    VarQITE,
+    VarQRTE,
+    VarQTE,
+    VarQTEResult,
+)
+from .variational_algorithm import VariationalAlgorithm, VariationalResult
 from .version import __version__
 
 __all__ = [

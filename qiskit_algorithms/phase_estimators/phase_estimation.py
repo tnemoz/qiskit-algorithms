@@ -20,15 +20,15 @@ from typing import Any
 import numpy
 import qiskit
 from qiskit import circuit
-from qiskit.circuit import QuantumCircuit, ClassicalRegister
+from qiskit.circuit import ClassicalRegister, QuantumCircuit
 from qiskit.primitives import BaseSamplerV2
 from qiskit.result import Result
 
 from qiskit_algorithms.exceptions import AlgorithmError
 
+from ..custom_types import Transpiler
 from .phase_estimation_result import PhaseEstimationResult, _sort_phases
 from .phase_estimator import PhaseEstimator
-from ..custom_types import Transpiler
 
 
 class PhaseEstimation(PhaseEstimator):

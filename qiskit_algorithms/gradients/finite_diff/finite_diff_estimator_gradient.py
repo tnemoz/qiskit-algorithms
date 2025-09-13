@@ -15,19 +15,17 @@
 from __future__ import annotations
 
 from collections.abc import Sequence
-from typing import Literal, Any
+from typing import Any, Literal
 
 import numpy as np
-
 from qiskit.circuit import Parameter, QuantumCircuit
 from qiskit.primitives import BaseEstimatorV2
 from qiskit.quantum_info.operators.base_operator import BaseOperator
 
+from ...custom_types import Transpiler
+from ...exceptions import AlgorithmError
 from ..base.base_estimator_gradient import BaseEstimatorGradient
 from ..base.estimator_gradient_result import EstimatorGradientResult
-from ...custom_types import Transpiler
-
-from ...exceptions import AlgorithmError
 
 
 class FiniteDiffEstimatorGradient(BaseEstimatorGradient):

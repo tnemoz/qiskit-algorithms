@@ -14,17 +14,17 @@
 
 from __future__ import annotations
 
-from collections.abc import Iterator
-from typing import Any, Callable
+from collections.abc import Callable, Iterator
+from typing import Any
 
 import numpy as np
 from qiskit.circuit import QuantumCircuit
-
 from qiskit.primitives import BaseSamplerV2
+
 from qiskit_algorithms.state_fidelities import ComputeUncompute
 
-from .spsa import SPSA, CALLBACK, TERMINATIONCHECKER, _batch_evaluate
 from ..custom_types import Transpiler
+from .spsa import CALLBACK, SPSA, TERMINATIONCHECKER, _batch_evaluate
 
 # the function to compute the fidelity
 FIDELITY = Callable[[np.ndarray, np.ndarray], float]

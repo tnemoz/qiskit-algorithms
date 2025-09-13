@@ -14,34 +14,32 @@
 
 from __future__ import annotations
 
+import logging
 import warnings
 from collections.abc import Callable
-import logging
 from time import time
 from typing import Any
 
 import numpy as np
-
 from qiskit.circuit import QuantumCircuit
 from qiskit.primitives import BaseSamplerV2
-from qiskit.result import QuasiDistribution
 from qiskit.quantum_info.operators.base_operator import BaseOperator
+from qiskit.result import QuasiDistribution
 
 from ..exceptions import AlgorithmError
 from ..list_or_dict import ListOrDict
+from ..observables_evaluator import estimate_observables
 from ..optimizers import Minimizer, Optimizer, OptimizerResult
+from ..utils import validate_bounds, validate_initial_point
+
+# private function as we expect this to be updated in the next released
+from ..utils.set_batching import _set_default_batchsize
 from ..variational_algorithm import VariationalAlgorithm, VariationalResult
 from .diagonal_estimator import _DiagonalEstimator
 from .sampling_mes import (
     SamplingMinimumEigensolver,
     SamplingMinimumEigensolverResult,
 )
-from ..observables_evaluator import estimate_observables
-from ..utils import validate_initial_point, validate_bounds
-
-# private function as we expect this to be updated in the next released
-from ..utils.set_batching import _set_default_batchsize
-
 
 logger = logging.getLogger(__name__)
 

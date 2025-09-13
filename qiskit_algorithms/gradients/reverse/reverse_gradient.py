@@ -13,24 +13,23 @@
 """Estimator gradients with the classically efficient reverse mode."""
 
 from __future__ import annotations
+
+import logging
 from collections.abc import Sequence
 from typing import cast
-import logging
 
 import numpy as np
-
-from qiskit.circuit import QuantumCircuit, Parameter
-from qiskit.quantum_info.operators.base_operator import BaseOperator
-from qiskit.quantum_info import Statevector
+from qiskit.circuit import Parameter, QuantumCircuit
 from qiskit.primitives import StatevectorEstimator
-
-from .bind import bind
-from .derive_circuit import derive_circuit
-from .split_circuits import split
+from qiskit.quantum_info import Statevector
+from qiskit.quantum_info.operators.base_operator import BaseOperator
 
 from ..base.base_estimator_gradient import BaseEstimatorGradient
 from ..base.estimator_gradient_result import EstimatorGradientResult
 from ..utils import DerivativeType
+from .bind import bind
+from .derive_circuit import derive_circuit
+from .split_circuits import split
 
 logger = logging.getLogger(__name__)
 

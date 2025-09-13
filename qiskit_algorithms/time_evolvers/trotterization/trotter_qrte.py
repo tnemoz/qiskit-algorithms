@@ -17,18 +17,17 @@ from __future__ import annotations
 from typing import Any
 
 from qiskit import QuantumCircuit
-
 from qiskit.circuit.library import PauliEvolutionGate
 from qiskit.circuit.parametertable import ParameterView
 from qiskit.primitives import BaseEstimatorV2
 from qiskit.quantum_info import Pauli, SparsePauliOp
-from qiskit.synthesis import ProductFormula, LieTrotter
+from qiskit.synthesis import LieTrotter, ProductFormula
 
 from qiskit_algorithms.custom_types import Transpiler
+from qiskit_algorithms.observables_evaluator import estimate_observables
+from qiskit_algorithms.time_evolvers.real_time_evolver import RealTimeEvolver
 from qiskit_algorithms.time_evolvers.time_evolution_problem import TimeEvolutionProblem
 from qiskit_algorithms.time_evolvers.time_evolution_result import TimeEvolutionResult
-from qiskit_algorithms.time_evolvers.real_time_evolver import RealTimeEvolver
-from qiskit_algorithms.observables_evaluator import estimate_observables
 
 
 class TrotterQRTE(RealTimeEvolver):

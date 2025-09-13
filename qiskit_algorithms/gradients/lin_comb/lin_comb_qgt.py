@@ -19,19 +19,17 @@ from collections.abc import Sequence
 from typing import Any
 
 import numpy as np
-
 from qiskit.circuit import Parameter, QuantumCircuit
 from qiskit.primitives import BaseEstimatorV2
 from qiskit.quantum_info import SparsePauliOp
 
-from ..base.base_qgt import BaseQGT
-from .lin_comb_estimator_gradient import LinCombEstimatorGradient
-from ..base.qgt_result import QGTResult
-from ..utils import DerivativeType, _make_lin_comb_qgt_circuit, _make_lin_comb_observables
 from ...custom_types import Transpiler
-
 from ...exceptions import AlgorithmError
 from ...utils.circuit_key import _circuit_key
+from ..base.base_qgt import BaseQGT
+from ..base.qgt_result import QGTResult
+from ..utils import DerivativeType, _make_lin_comb_observables, _make_lin_comb_qgt_circuit
+from .lin_comb_estimator_gradient import LinCombEstimatorGradient
 
 
 class LinCombQGT(BaseQGT):

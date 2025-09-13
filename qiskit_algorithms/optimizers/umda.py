@@ -21,7 +21,8 @@ import numpy as np
 from scipy.stats import norm
 
 from qiskit_algorithms.utils import algorithm_globals
-from .optimizer import OptimizerResult, POINT
+
+from .optimizer import POINT, OptimizerResult
 from .scipy_optimizer import Optimizer, OptimizerSupportLevel
 
 

@@ -13,15 +13,25 @@
 """Types used by the qiskit-algorithms package."""
 from __future__ import annotations
 
-from typing import Any, Protocol, Union
+from typing import Any, Protocol, overload
 
 from qiskit import QuantumCircuit
 
-_Circuits = Union[list[QuantumCircuit], QuantumCircuit]
+_Circuits = list[QuantumCircuit] | QuantumCircuit
 
 
 class Transpiler(Protocol):
     """A Generic type to represent a transpiler."""
+
+    @overload
+    def run(self, circuits: list[QuantumCircuit], **options: Any) -> list[QuantumCircuit]:
+        """Transpile a list of quantum circuits."""
+        ...
+
+    @overload
+    def run(self, circuits: QuantumCircuit, **options: Any) -> QuantumCircuit:
+        """Transpile a circuit."""
+        ...
 
     def run(self, circuits: _Circuits, **options: Any) -> _Circuits:
         """Transpile a circuit or a list of quantum circuits."""

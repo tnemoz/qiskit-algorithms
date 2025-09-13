@@ -25,17 +25,16 @@ from qiskit.circuit import Parameter, ParameterExpression, QuantumCircuit
 from qiskit.primitives import BaseSamplerV2
 from qiskit.transpiler.passes import TranslateParameterizedGates
 
-from .sampler_gradient_result import SamplerGradientResult
-from ..utils import (
-    GradientCircuit,
-    _assign_unique_parameters,
-    _make_gradient_parameters,
-    _make_gradient_parameter_values,
-)
-
 from ...algorithm_job import AlgorithmJob
 from ...custom_types import Transpiler
 from ...utils.circuit_key import _circuit_key
+from ..utils import (
+    GradientCircuit,
+    _assign_unique_parameters,
+    _make_gradient_parameter_values,
+    _make_gradient_parameters,
+)
+from .sampler_gradient_result import SamplerGradientResult
 
 
 class BaseSamplerGradient(ABC):

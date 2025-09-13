@@ -14,19 +14,20 @@
 
 from __future__ import annotations
 
-from typing import Callable, Any
-import numpy as np
+from collections.abc import Callable
+from typing import Any
 
+import numpy as np
 from qiskit.circuit import QuantumCircuit
 from qiskit.circuit.library.n_local.qaoa_ansatz import QAOAAnsatz
-from qiskit.quantum_info.operators.base_operator import BaseOperator
 from qiskit.primitives import BaseSamplerV2
+from qiskit.quantum_info.operators.base_operator import BaseOperator
 
-from qiskit_algorithms.utils.validation import validate_min
 from qiskit_algorithms.optimizers import Minimizer, Optimizer
+from qiskit_algorithms.utils.validation import validate_min
 
-from .sampling_vqe import SamplingVQE
 from ..custom_types import Transpiler
+from .sampling_vqe import SamplingVQE
 
 
 class QAOA(SamplingVQE):

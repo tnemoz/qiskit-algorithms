@@ -1,6 +1,6 @@
 # This code is part of a Qiskit project.
 #
-# (C) Copyright IBM 2020, 2023.
+# (C) Copyright IBM 2020, 2025.
 #
 # This code is licensed under the Apache License, Version 2.0. You may
 # obtain a copy of this license in the LICENSE.txt file in the root directory
@@ -12,8 +12,8 @@
 
 """Amplitude Amplifiers Package"""
 
-from .amplitude_amplifier import AmplitudeAmplifier, AmplitudeAmplifierResult
 from .amplification_problem import AmplificationProblem
+from .amplitude_amplifier import AmplitudeAmplifier, AmplitudeAmplifierResult
 from .grover import Grover, GroverResult
 
 __all__ = [

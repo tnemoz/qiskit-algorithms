@@ -23,11 +23,11 @@ from qiskit.primitives import BaseSamplerV2
 from qiskit.primitives.containers.sampler_pub import SamplerPub
 from qiskit.primitives.primitive_job import PrimitiveJob
 
-from .base_state_fidelity import BaseStateFidelity
-from .state_fidelity_result import StateFidelityResult
 from ..algorithm_job import AlgorithmJob
 from ..custom_types import Transpiler
 from ..exceptions import AlgorithmError
+from .base_state_fidelity import BaseStateFidelity
+from .state_fidelity_result import StateFidelityResult
 
 
 class ComputeUncompute(BaseStateFidelity):

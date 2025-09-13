@@ -14,7 +14,7 @@
 from __future__ import annotations
 
 import itertools
-from collections.abc import Iterator, Generator
+from collections.abc import Generator, Iterator
 from typing import Any
 
 import numpy as np
@@ -23,9 +23,10 @@ from qiskit.primitives import BaseSamplerV2
 
 from qiskit_algorithms.exceptions import AlgorithmError
 from qiskit_algorithms.utils import algorithm_globals
+
+from ..custom_types import Transpiler
 from .amplification_problem import AmplificationProblem
 from .amplitude_amplifier import AmplitudeAmplifier, AmplitudeAmplifierResult
-from ..custom_types import Transpiler
 
 
 class Grover(AmplitudeAmplifier):
@@ -192,7 +193,7 @@ class Grover(AmplitudeAmplifier):
         """
         self._sampler = sampler
 
-    def amplify(self, amplification_problem: AmplificationProblem) -> "GroverResult":
+    def amplify(self, amplification_problem: AmplificationProblem) -> GroverResult:
         """Run the Grover algorithm.
 
         Args:

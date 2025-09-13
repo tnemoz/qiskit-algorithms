@@ -1,6 +1,6 @@
 # This code is part of a Qiskit project.
 #
-# (C) Copyright IBM 2019, 2023.
+# (C) Copyright IBM 2019, 2025.
 #
 # This code is licensed under the Apache License, Version 2.0. You may
 # obtain a copy of this license in the LICENSE.txt file in the root directory
@@ -17,7 +17,8 @@ from collections.abc import Callable
 from typing import Any
 
 from qiskit_algorithms.utils import optionals as _optionals
-from .optimizer import Optimizer, OptimizerSupportLevel, OptimizerResult, POINT
+
+from .optimizer import POINT, Optimizer, OptimizerResult, OptimizerSupportLevel
 
 
 @_optionals.HAS_SKQUANT.require_in_instance

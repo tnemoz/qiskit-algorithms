@@ -1,6 +1,6 @@
 # This code is part of a Qiskit project.
 #
-# (C) Copyright IBM 2023, 2024.
+# (C) Copyright IBM 2023, 2025.
 #
 # This code is licensed under the Apache License, Version 2.0. You may
 # obtain a copy of this license in the LICENSE.txt file in the root directory
@@ -13,10 +13,9 @@
 """Class for solving linear equations for Quantum Time Evolution."""
 from __future__ import annotations
 
-from collections.abc import Mapping, Sequence, Callable
+from collections.abc import Callable, Mapping, Sequence
 
 import numpy as np
-
 from qiskit import QuantumCircuit
 from qiskit.circuit import Parameter
 from qiskit.quantum_info import SparsePauliOp

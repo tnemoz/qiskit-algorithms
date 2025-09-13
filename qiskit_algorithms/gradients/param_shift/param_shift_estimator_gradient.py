@@ -20,11 +20,10 @@ from collections.abc import Sequence
 from qiskit.circuit import Parameter, QuantumCircuit
 from qiskit.quantum_info.operators.base_operator import BaseOperator
 
+from ...exceptions import AlgorithmError
 from ..base.base_estimator_gradient import BaseEstimatorGradient
 from ..base.estimator_gradient_result import EstimatorGradientResult
 from ..utils import _make_param_shift_parameter_values
-
-from ...exceptions import AlgorithmError
 
 
 class ParamShiftEstimatorGradient(BaseEstimatorGradient):

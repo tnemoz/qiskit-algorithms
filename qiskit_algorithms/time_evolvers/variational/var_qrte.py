@@ -13,23 +13,20 @@
 """Variational Quantum Real Time Evolution algorithm."""
 from __future__ import annotations
 
-from collections.abc import Mapping, Sequence
-from typing import Type, Callable, Any
+from collections.abc import Callable, Mapping, Sequence
+from typing import Any
 
 import numpy as np
-from scipy.integrate import OdeSolver
-
 from qiskit import QuantumCircuit
 from qiskit.circuit import Parameter
 from qiskit.primitives import BaseEstimatorV2
+from scipy.integrate import OdeSolver
 
-from .solvers.ode.forward_euler_solver import ForwardEulerSolver
-
-from .variational_principles import RealVariationalPrinciple, RealMcLachlanPrinciple
-from .var_qte import VarQTE
-
-from ..real_time_evolver import RealTimeEvolver
 from ...custom_types import Transpiler
+from ..real_time_evolver import RealTimeEvolver
+from .solvers.ode.forward_euler_solver import ForwardEulerSolver
+from .var_qte import VarQTE
+from .variational_principles import RealMcLachlanPrinciple, RealVariationalPrinciple
 
 
 class VarQRTE(VarQTE, RealTimeEvolver):
@@ -81,7 +78,7 @@ class VarQRTE(VarQTE, RealTimeEvolver):
         initial_parameters: Mapping[Parameter, float] | Sequence[float],
         variational_principle: RealVariationalPrinciple | None = None,
         estimator: BaseEstimatorV2 | None = None,
-        ode_solver: Type[OdeSolver] | str = ForwardEulerSolver,
+        ode_solver: type[OdeSolver] | str = ForwardEulerSolver,
         lse_solver: Callable[[np.ndarray, np.ndarray], np.ndarray] | None = None,
         num_timesteps: int | None = None,
         imag_part_tol: float = 1e-7,

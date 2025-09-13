@@ -19,16 +19,16 @@ from collections import OrderedDict
 from typing import Any
 
 import numpy as np
-from qiskit import QuantumCircuit, ClassicalRegister
+from qiskit import ClassicalRegister, QuantumCircuit
 from qiskit.primitives import BaseSamplerV2, StatevectorSampler
 from scipy.optimize import bisect
 from scipy.stats import chi2, norm
 
-from .ae_utils import pdf_a, derivative_log_pdf_a, bisect_max
-from .amplitude_estimator import AmplitudeEstimator, AmplitudeEstimatorResult
-from .estimation_problem import EstimationProblem
 from ..custom_types import Transpiler
 from ..exceptions import AlgorithmError
+from .ae_utils import bisect_max, derivative_log_pdf_a, pdf_a
+from .amplitude_estimator import AmplitudeEstimator, AmplitudeEstimatorResult
+from .estimation_problem import EstimationProblem
 
 
 class AmplitudeEstimation(AmplitudeEstimator):
@@ -228,7 +228,7 @@ class AmplitudeEstimation(AmplitudeEstimator):
 
     @staticmethod
     def compute_mle(
-        result: "AmplitudeEstimationResult", apply_post_processing: bool = False
+        result: AmplitudeEstimationResult, apply_post_processing: bool = False
     ) -> float:
         """Compute the Maximum Likelihood Estimator (MLE).
 
@@ -285,7 +285,7 @@ class AmplitudeEstimation(AmplitudeEstimator):
 
         return a_opt
 
-    def estimate(self, estimation_problem: EstimationProblem) -> "AmplitudeEstimationResult":
+    def estimate(self, estimation_problem: EstimationProblem) -> AmplitudeEstimationResult:
         """Run the amplitude estimation algorithm on provided estimation problem.
 
         Args:
@@ -379,7 +379,7 @@ class AmplitudeEstimation(AmplitudeEstimator):
 
     @staticmethod
     def compute_confidence_interval(
-        result: "AmplitudeEstimationResult",
+        result: AmplitudeEstimationResult,
         alpha: float = 0.05,
         kind: str = "likelihood_ratio",
     ) -> tuple[float, float]:

@@ -1,6 +1,6 @@
 # This code is part of a Qiskit project.
 #
-# (C) Copyright IBM 2022, 2023.
+# (C) Copyright IBM 2022, 2025.
 #
 # This code is licensed under the Apache License, Version 2.0. You may
 # obtain a copy of this license in the LICENSE.txt file in the root directory
@@ -11,20 +11,20 @@
 # that they have been altered from the originals.
 """Auxiliary functions for SciPy Time Evolvers"""
 from __future__ import annotations
+
 import logging
+
+import numpy as np
+from qiskit import QuantumCircuit
+from qiskit.quantum_info.operators.base_operator import BaseOperator
+from qiskit.quantum_info.states import Statevector
 from scipy.sparse import csr_matrix
 from scipy.sparse.linalg import expm_multiply
-import numpy as np
 
-from qiskit.quantum_info.states import Statevector
-from qiskit.quantum_info.operators.base_operator import BaseOperator
-
-from qiskit import QuantumCircuit
+from ...exceptions import AlgorithmError
+from ...list_or_dict import ListOrDict
 from ..time_evolution_problem import TimeEvolutionProblem
 from ..time_evolution_result import TimeEvolutionResult
-from ...exceptions import AlgorithmError
-
-from ...list_or_dict import ListOrDict
 
 logger = logging.getLogger(__name__)
 

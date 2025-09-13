@@ -1,6 +1,6 @@
 # This code is part of a Qiskit project.
 #
-# (C) Copyright IBM 2018, 2024.
+# (C) Copyright IBM 2018, 2025.
 #
 # This code is licensed under the Apache License, Version 2.0. You may
 # obtain a copy of this license in the LICENSE.txt file in the root directory
@@ -20,7 +20,8 @@ import numpy as np
 from scipy.optimize import minimize
 
 from qiskit_algorithms.utils.validation import validate_min
-from .optimizer import Optimizer, OptimizerSupportLevel, OptimizerResult, POINT
+
+from .optimizer import POINT, Optimizer, OptimizerResult, OptimizerSupportLevel
 
 
 class SciPyOptimizer(Optimizer):

@@ -1,6 +1,6 @@
 # This code is part of a Qiskit project.
 #
-# (C) Copyright IBM 2020, 2023.
+# (C) Copyright IBM 2020, 2025.
 #
 # This code is licensed under the Apache License, Version 2.0. You may
 # obtain a copy of this license in the LICENSE.txt file in the root directory
@@ -12,13 +12,13 @@
 
 """Phase Estimators."""
 
-from .phase_estimator import PhaseEstimator
-from .phase_estimation import PhaseEstimation
-from .phase_estimation_result import PhaseEstimationResult
-from .phase_estimation_scale import PhaseEstimationScale
 from .hamiltonian_phase_estimation import HamiltonianPhaseEstimation
 from .hamiltonian_phase_estimation_result import HamiltonianPhaseEstimationResult
 from .ipe import IterativePhaseEstimation
+from .phase_estimation import PhaseEstimation
+from .phase_estimation_result import PhaseEstimationResult
+from .phase_estimation_scale import PhaseEstimationScale
+from .phase_estimator import PhaseEstimator
 
 __all__ = [
     "PhaseEstimator",

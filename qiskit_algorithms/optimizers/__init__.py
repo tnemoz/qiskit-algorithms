@@ -131,8 +131,8 @@ from .aqgd import AQGD
 from .bobyqa import BOBYQA
 from .cg import CG
 from .cobyla import COBYLA
-from .gsls import GSLS
 from .gradient_descent import GradientDescent, GradientDescentState
+from .gsls import GSLS
 from .imfil import IMFIL
 from .l_bfgs_b import L_BFGS_B
 from .nelder_mead import NELDER_MEAD
@@ -143,7 +143,6 @@ from .nlopts.direct_l_rand import DIRECT_L_RAND
 from .nlopts.esch import ESCH
 from .nlopts.isres import ISRES
 from .nlopts.sbplx import SBPLX
-from .steppable_optimizer import SteppableOptimizer, AskData, TellData, OptimizerState
 from .optimizer import Minimizer, Optimizer, OptimizerResult, OptimizerSupportLevel
 from .p_bfgs import P_BFGS
 from .powell import POWELL
@@ -152,6 +151,7 @@ from .scipy_optimizer import SciPyOptimizer
 from .slsqp import SLSQP
 from .snobfit import SNOBFIT
 from .spsa import SPSA
+from .steppable_optimizer import AskData, OptimizerState, SteppableOptimizer, TellData
 from .tnc import TNC
 from .umda import UMDA
 

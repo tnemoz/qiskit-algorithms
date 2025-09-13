@@ -1,6 +1,6 @@
 # This code is part of a Qiskit project.
 #
-# (C) Copyright IBM 2020, 2023.
+# (C) Copyright IBM 2020, 2025.
 #
 # This code is licensed under the Apache License, Version 2.0. You may
 # obtain a copy of this license in the LICENSE.txt file in the root directory
@@ -12,12 +12,12 @@
 
 """The Amplitude Estimators package."""
 
-from .amplitude_estimator import AmplitudeEstimator, AmplitudeEstimatorResult
 from .ae import AmplitudeEstimation, AmplitudeEstimationResult
+from .amplitude_estimator import AmplitudeEstimator, AmplitudeEstimatorResult
+from .estimation_problem import EstimationProblem
 from .fae import FasterAmplitudeEstimation, FasterAmplitudeEstimationResult
 from .iae import IterativeAmplitudeEstimation, IterativeAmplitudeEstimationResult
 from .mlae import MaximumLikelihoodAmplitudeEstimation, MaximumLikelihoodAmplitudeEstimationResult
-from .estimation_problem import EstimationProblem
 
 __all__ = [
     "AmplitudeEstimator",

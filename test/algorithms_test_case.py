@@ -1,6 +1,6 @@
 # This code is part of a Qiskit project.
 #
-# (C) Copyright IBM 2018, 2023.
+# (C) Copyright IBM 2018, 2025.
 #
 # This code is licensed under the Apache License, Version 2.0. You may
 # obtain a copy of this license in the LICENSE.txt file in the root directory
@@ -12,14 +12,13 @@
 
 """Algorithms Test Case"""
 
-from typing import Optional
-from abc import ABC
-import warnings
 import inspect
 import logging
 import os
-import unittest
 import time
+import unittest
+import warnings
+from abc import ABC
 
 from qiskit_algorithms.utils import algorithm_globals
 
@@ -75,7 +74,7 @@ class QiskitAlgorithmsTestCase(unittest.TestCase, ABC):
             level = logging._nameToLevel.get(os.getenv("LOG_LEVEL"), logging.INFO)
             cls.log.setLevel(level)
 
-    def get_resource_path(self, filename: str, path: Optional[str] = None) -> str:
+    def get_resource_path(self, filename: str, path: str | None = None) -> str:
         """Get the absolute path to a resource.
         Args:
             filename: filename or relative path to the resource.

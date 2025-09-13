@@ -1,6 +1,6 @@
 # This code is part of a Qiskit project.
 #
-# (C) Copyright IBM 2019, 2024.
+# (C) Copyright IBM 2019, 2025.
 #
 # This code is licensed under the Apache License, Version 2.0. You may
 # obtain a copy of this license in the LICENSE.txt file in the root directory
@@ -13,6 +13,7 @@
 """Analytical Quantum Gradient Descent (AQGD) optimizer."""
 
 from __future__ import annotations
+
 import logging
 from collections.abc import Callable
 from typing import Any
@@ -20,8 +21,9 @@ from typing import Any
 import numpy as np
 
 from qiskit_algorithms.utils.validation import validate_range_exclusive_max
-from .optimizer import Optimizer, OptimizerSupportLevel, OptimizerResult, POINT
+
 from ..exceptions import AlgorithmError
+from .optimizer import POINT, Optimizer, OptimizerResult, OptimizerSupportLevel
 
 logger = logging.getLogger(__name__)
 

@@ -19,13 +19,13 @@ from typing import Any
 from qiskit import QuantumCircuit
 from qiskit.circuit.library import PauliEvolutionGate
 from qiskit.primitives import BaseSamplerV2
-from qiskit.quantum_info import SparsePauliOp, Statevector, Pauli
+from qiskit.quantum_info import Pauli, SparsePauliOp, Statevector
 from qiskit.synthesis import EvolutionSynthesis
 
+from ..custom_types import Transpiler
 from .hamiltonian_phase_estimation_result import HamiltonianPhaseEstimationResult
 from .phase_estimation import PhaseEstimation
 from .phase_estimation_scale import PhaseEstimationScale
-from ..custom_types import Transpiler
 
 
 class HamiltonianPhaseEstimation:

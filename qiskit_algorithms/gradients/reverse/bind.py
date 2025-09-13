@@ -1,6 +1,6 @@
 # This code is part of a Qiskit project.
 #
-# (C) Copyright IBM 2022, 2024.
+# (C) Copyright IBM 2022, 2025.
 #
 # This code is licensed under the Apache License, Version 2.0. You may
 # obtain a copy of this license in the LICENSE.txt file in the root directory
@@ -13,9 +13,10 @@
 """Bind values to a parametrized circuit, accepting binds for non-existing parameters in the circuit."""
 
 from __future__ import annotations
+
 from collections.abc import Iterable
 
-from qiskit.circuit import QuantumCircuit, Parameter
+from qiskit.circuit import Parameter, QuantumCircuit
 
 
 # pylint: disable=inconsistent-return-statements

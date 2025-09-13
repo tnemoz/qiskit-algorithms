@@ -15,8 +15,9 @@ Sampler result class
 
 from __future__ import annotations
 
-from typing import Any, Sequence
+from collections.abc import Sequence
 from dataclasses import dataclass
+from typing import Any
 
 
 @dataclass(frozen=True)

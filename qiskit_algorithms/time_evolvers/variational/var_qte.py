@@ -14,28 +14,25 @@
 from __future__ import annotations
 
 from abc import ABC
-from collections.abc import Mapping, Callable, Sequence
-from typing import Type, Any
+from collections.abc import Callable, Mapping, Sequence
+from typing import Any
 
 import numpy as np
-from scipy.integrate import OdeSolver
-
 from qiskit import QuantumCircuit
 from qiskit.circuit import Parameter
 from qiskit.primitives import BaseEstimatorV2
 from qiskit.quantum_info.operators.base_operator import BaseOperator
+from scipy.integrate import OdeSolver
 
+from ...custom_types import Transpiler
+from ...observables_evaluator import estimate_observables
+from ..time_evolution_problem import TimeEvolutionProblem
 from .solvers.ode.forward_euler_solver import ForwardEulerSolver
 from .solvers.ode.ode_function_factory import OdeFunctionFactory
 from .solvers.ode.var_qte_ode_solver import VarQTEOdeSolver
 from .solvers.var_qte_linear_solver import VarQTELinearSolver
-
-from .variational_principles.variational_principle import VariationalPrinciple
 from .var_qte_result import VarQTEResult
-
-from ..time_evolution_problem import TimeEvolutionProblem
-from ...custom_types import Transpiler
-from ...observables_evaluator import estimate_observables
+from .variational_principles.variational_principle import VariationalPrinciple
 
 
 class VarQTE(ABC):
@@ -52,7 +49,7 @@ class VarQTE(ABC):
             variational_principle (VariationalPrinciple): Variational Principle to be used.
             estimator (BaseEstimator): An estimator primitive used for calculating expectation
                 values of ``TimeEvolutionProblem.aux_operators``.
-            ode_solver(Type[OdeSolver] | str): ODE solver callable that implements a SciPy
+            ode_solver (type[OdeSolver] | str): ODE solver callable that implements a SciPy
                 ``OdeSolver`` interface or a string indicating a valid method offered by SciPy.
             lse_solver (Callable[[np.ndarray, np.ndarray], np.ndarray] | None): Linear system
                 of equations solver callable. It accepts ``A`` and ``b`` to solve ``Ax=b``
@@ -78,7 +75,7 @@ class VarQTE(ABC):
         initial_parameters: Mapping[Parameter, float] | Sequence[float],
         variational_principle: VariationalPrinciple,
         estimator: BaseEstimatorV2,
-        ode_solver: Type[OdeSolver] | str = ForwardEulerSolver,
+        ode_solver: type[OdeSolver] | str = ForwardEulerSolver,
         lse_solver: Callable[[np.ndarray, np.ndarray], np.ndarray] | None = None,
         num_timesteps: int | None = None,
         imag_part_tol: float = 1e-7,

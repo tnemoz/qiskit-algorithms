@@ -12,9 +12,10 @@
 
 """Result of running PhaseEstimation"""
 from __future__ import annotations
-import numpy
 
+import numpy
 from qiskit.result import Result
+
 from .phase_estimator import PhaseEstimatorResult
 
 

@@ -14,29 +14,26 @@
 from __future__ import annotations
 
 import warnings
-
 from collections.abc import Sequence
 
 import numpy as np
 from numpy import real
-
 from qiskit import QuantumCircuit
 from qiskit.circuit import Parameter
 from qiskit.primitives import StatevectorEstimator
 from qiskit.quantum_info import SparsePauliOp
 from qiskit.quantum_info.operators.base_operator import BaseOperator
 
-from .real_variational_principle import RealVariationalPrinciple
-
 from ....exceptions import AlgorithmError
 from ....gradients import (
     BaseEstimatorGradient,
     BaseQGT,
     DerivativeType,
-    LinCombQGT,
     LinCombEstimatorGradient,
+    LinCombQGT,
 )
 from ....run_estimator_job import run_estimator_job
+from .real_variational_principle import RealVariationalPrinciple
 
 
 class RealMcLachlanPrinciple(RealVariationalPrinciple):

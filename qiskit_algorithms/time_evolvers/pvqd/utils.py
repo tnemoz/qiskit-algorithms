@@ -13,12 +13,12 @@
 
 """Utilities for p-VQD."""
 from __future__ import annotations
+
 import logging
 from collections.abc import Callable
 
 import numpy as np
-
-from qiskit.circuit import QuantumCircuit, Parameter, ParameterExpression
+from qiskit.circuit import Parameter, ParameterExpression, QuantumCircuit
 from qiskit.compiler import transpile
 from qiskit.exceptions import QiskitError
 from qiskit.primitives import BaseEstimatorV2

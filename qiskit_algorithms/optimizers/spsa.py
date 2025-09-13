@@ -16,19 +16,19 @@ This implementation allows both standard first-order and second-order SPSA.
 """
 from __future__ import annotations
 
-from collections import deque
-from collections.abc import Iterator
-from typing import Callable, Any, SupportsFloat
 import logging
 import warnings
+from collections import deque
+from collections.abc import Callable, Iterator
 from time import time
+from typing import Any, SupportsFloat
 
-import scipy
 import numpy as np
+import scipy
 
 from qiskit_algorithms.utils import algorithm_globals
 
-from .optimizer import Optimizer, OptimizerSupportLevel, OptimizerResult, POINT
+from .optimizer import POINT, Optimizer, OptimizerResult, OptimizerSupportLevel
 
 # number of function evaluations, parameters, loss, stepsize, accepted
 CALLBACK = Callable[[int, np.ndarray, float, SupportsFloat, bool], None]

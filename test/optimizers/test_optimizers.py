@@ -14,44 +14,41 @@
 
 import unittest
 
-from test import QiskitAlgorithmsTestCase
-
-from typing import Optional, List, Tuple
-from ddt import ddt, data, unpack
 import numpy as np
-from scipy.optimize import rosen, rosen_der
-
+from ddt import data, ddt, unpack
 from qiskit.circuit.library import real_amplitudes
 from qiskit.exceptions import MissingOptionalLibraryError
 from qiskit.primitives import StatevectorSampler
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.utils import optionals
+from scipy.optimize import rosen, rosen_der
 
 from qiskit_algorithms.optimizers import (
     ADAM,
     AQGD,
     BOBYQA,
-    IMFIL,
     CG,
-    CRS,
     COBYLA,
+    CRS,
     DIRECT_L,
     DIRECT_L_RAND,
     GSLS,
-    GradientDescent,
+    IMFIL,
     L_BFGS_B,
     NELDER_MEAD,
-    Optimizer,
     P_BFGS,
     POWELL,
+    QNSPSA,
     SBPLX,
     SLSQP,
     SPSA,
-    QNSPSA,
     TNC,
+    GradientDescent,
+    Optimizer,
     SciPyOptimizer,
 )
 from qiskit_algorithms.utils import algorithm_globals
+from test import QiskitAlgorithmsTestCase  # pylint: disable=wrong-import-order
 
 
 @ddt
@@ -67,7 +64,7 @@ class TestOptimizers(QiskitAlgorithmsTestCase):
         optimizer: Optimizer,
         max_nfev: int,
         grad: bool = False,
-        bounds: Optional[List[Tuple[float, float]]] = None,
+        bounds: list[tuple[float, float]] | None = None,
     ):
         """Test the optimizer.
 

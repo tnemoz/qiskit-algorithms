@@ -1,6 +1,6 @@
 # This code is part of a Qiskit project.
 #
-# (C) Copyright IBM 2022, 2023.
+# (C) Copyright IBM 2022, 2025.
 #
 # This code is licensed under the Apache License, Version 2.0. You may
 # obtain a copy of this license in the LICENSE.txt file in the root directory
@@ -15,10 +15,10 @@
 from .adapt_vqe import AdaptVQE, AdaptVQEResult
 from .minimum_eigensolver import MinimumEigensolver, MinimumEigensolverResult
 from .numpy_minimum_eigensolver import NumPyMinimumEigensolver, NumPyMinimumEigensolverResult
-from .vqe import VQE, VQEResult
+from .qaoa import QAOA
 from .sampling_mes import SamplingMinimumEigensolver, SamplingMinimumEigensolverResult
 from .sampling_vqe import SamplingVQE, SamplingVQEResult
-from .qaoa import QAOA
+from .vqe import VQE, VQEResult
 
 __all__ = [
     "AdaptVQE",

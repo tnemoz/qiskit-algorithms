@@ -27,9 +27,10 @@ overridden to opt-out of this infrastructure but still meet the interface requir
 """
 
 from __future__ import annotations
-from abc import ABC, abstractmethod
-import numpy as np
 
+from abc import ABC, abstractmethod
+
+import numpy as np
 from qiskit.circuit import QuantumCircuit
 
 from .algorithm_result import AlgorithmResult

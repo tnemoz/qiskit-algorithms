@@ -1,6 +1,6 @@
 # This code is part of a Qiskit project.
 #
-# (C) Copyright IBM 2020, 2023.
+# (C) Copyright IBM 2020, 2025.
 #
 # This code is licensed under the Apache License, Version 2.0. You may
 # obtain a copy of this license in the LICENSE.txt file in the root directory
@@ -12,9 +12,9 @@
 
 """Scaling for Hamiltonian and eigenvalues to avoid phase wrapping"""
 from __future__ import annotations
-import numpy as np
 
-from qiskit.quantum_info import SparsePauliOp, Operator
+import numpy as np
+from qiskit.quantum_info import Operator, SparsePauliOp
 from qiskit.quantum_info.operators.base_operator import BaseOperator
 
 
@@ -116,7 +116,7 @@ class PhaseEstimationScale:
     @classmethod
     def from_pauli_sum(
         cls, pauli_sum: SparsePauliOp | Operator | BaseOperator
-    ) -> "PhaseEstimationScale":
+    ) -> PhaseEstimationScale:
         """Create a PhaseEstimationScale from a `SummedOp` representing a sum of Pauli Operators.
 
         It is assumed that the ``pauli_sum`` is the sum of ``PauliOp`` objects. The bound on

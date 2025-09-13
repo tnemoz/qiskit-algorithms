@@ -19,13 +19,13 @@ from typing import Any
 
 import numpy as np
 from qiskit.primitives import (
-    BaseSamplerV2,
     BaseEstimatorV2,
-    PubResult,
-    EstimatorPubLike,
+    BaseSamplerV2,
     DataBin,
-    SamplerPubLike,
+    EstimatorPubLike,
     PrimitiveResult,
+    PubResult,
+    SamplerPubLike,
 )
 from qiskit.primitives.containers.estimator_pub import EstimatorPub
 from qiskit.quantum_info import SparsePauliOp
