@@ -19,7 +19,7 @@ from __future__ import annotations
 
 import logging
 import warnings
-from collections.abc import Callable, Iterable, Sequence
+from collections.abc import Callable, Sequence
 from time import time
 from typing import Any, cast
 
@@ -31,7 +31,7 @@ from qiskit.quantum_info.operators.base_operator import BaseOperator
 
 from qiskit_algorithms.state_fidelities import BaseStateFidelity
 
-from ..custom_types import Transpiler
+from ..custom_types import EVAL_OBSERVABLE, Transpiler
 from ..exceptions import AlgorithmError
 from ..list_or_dict import ListOrDict
 from ..observables_evaluator import estimate_observables
@@ -240,8 +240,8 @@ class VQD(VariationalAlgorithm, Eigensolver):
 
     def compute_eigenvalues(
         self,
-        operator: BaseOperator,
-        aux_operators: ListOrDict[BaseOperator] | None = None,
+        operator: EVAL_OBSERVABLE,
+        aux_operators: ListOrDict[EVAL_OBSERVABLE] | None = None,
     ) -> VQDResult:
         super().compute_eigenvalues(operator, aux_operators)
 
@@ -267,20 +267,24 @@ class VQD(VariationalAlgorithm, Eigensolver):
 
             # Convert the None and zero values when aux_operators is a list.
             # Drop None and convert zero values when aux_operators is a dict.
-            key_op_iterator: Iterable[tuple[str | int, BaseOperator]]
+            converted: ListOrDict[EVAL_OBSERVABLE]
             if isinstance(aux_operators, list):
-                aux_operators = [op if op is not None else zero_op for op in aux_operators]
-                key_op_iterator = enumerate(aux_operators)
-                converted: ListOrDict[BaseOperator] = [zero_op] * len(aux_operators)
-            else:
-                key_op_iterator = aux_operators.items()
-                converted = {}
-            for key, op in key_op_iterator:
-                if op is not None:
-                    converted[key] = zero_op if op == 0 else op  # type: ignore[index]
-
+                converted = []
+                for op in aux_operators:
+                    if op is not None and op != 0:
+                        converted.append(op)
+                    else:
+                        converted.append(zero_op)
                     if self.ansatz.layout is not None:
-                        converted[key] = converted[key].apply_layout(self.ansatz.layout)
+                        converted[-1] = converted[-1].apply_layout(self.ansatz.layout)
+            else:
+                converted = {}
+                for key, op in aux_operators.items():
+                    if op is not None:
+                        converted[key] = zero_op if op == 0 else op
+
+                        if self.ansatz.layout is not None:
+                            converted[key] = converted[key].apply_layout(self.ansatz.layout)
 
             aux_operators = converted
 

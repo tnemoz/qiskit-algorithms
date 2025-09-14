@@ -13,14 +13,15 @@
 """Test Forward Euler solver."""
 
 import unittest
-from test import QiskitAlgorithmsTestCase
+
 import numpy as np
-from ddt import ddt, data, unpack
+from ddt import data, ddt, unpack
 from scipy.integrate import solve_ivp
 
 from qiskit_algorithms.time_evolvers.variational.solvers.ode.forward_euler_solver import (
     ForwardEulerSolver,
 )
+from test import QiskitAlgorithmsTestCase
 
 
 @ddt

@@ -14,19 +14,18 @@
 
 import unittest
 
-from test import QiskitAlgorithmsTestCase
-
 from qiskit_algorithms.utils.validation import (
     validate_in_set,
-    validate_min,
-    validate_min_exclusive,
     validate_max,
     validate_max_exclusive,
+    validate_min,
+    validate_min_exclusive,
     validate_range,
     validate_range_exclusive,
-    validate_range_exclusive_min,
     validate_range_exclusive_max,
+    validate_range_exclusive_min,
 )
+from test import QiskitAlgorithmsTestCase  # pylint: disable=wrong-import-order
 
 
 class TestValidation(QiskitAlgorithmsTestCase):

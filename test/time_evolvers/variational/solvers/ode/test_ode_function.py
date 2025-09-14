@@ -14,21 +14,21 @@
 
 import unittest
 
-from test import QiskitAlgorithmsTestCase
 import numpy as np
-from qiskit.quantum_info import SparsePauliOp
 from qiskit.circuit import Parameter
 from qiskit.circuit.library import efficient_su2
+from qiskit.quantum_info import SparsePauliOp
 
-from qiskit_algorithms.time_evolvers.variational.solvers.var_qte_linear_solver import (
-    VarQTELinearSolver,
+from qiskit_algorithms.time_evolvers.variational import (
+    ImaginaryMcLachlanPrinciple,
 )
 from qiskit_algorithms.time_evolvers.variational.solvers.ode.ode_function import (
     OdeFunction,
 )
-from qiskit_algorithms.time_evolvers.variational import (
-    ImaginaryMcLachlanPrinciple,
+from qiskit_algorithms.time_evolvers.variational.solvers.var_qte_linear_solver import (
+    VarQTELinearSolver,
 )
+from test import QiskitAlgorithmsTestCase  # pylint: disable=wrong-import-order
 
 
 class TestOdeFunctionGenerator(QiskitAlgorithmsTestCase):

@@ -14,10 +14,10 @@
 
 from __future__ import annotations
 
-from collections.abc import Sequence
 from typing import Any
 
 import numpy as np
+import numpy.typing as ntp
 from qiskit import QuantumCircuit
 from qiskit.primitives import BaseEstimatorV2
 from qiskit.quantum_info import SparsePauliOp
@@ -32,7 +32,7 @@ def estimate_observables(
     estimator: BaseEstimatorV2,
     quantum_state: QuantumCircuit,
     observables: ListOrDict[BaseOperator],
-    parameter_values: Sequence[float] | None = None,
+    parameter_values: ntp.NDArray[np.float64] | None = None,
     threshold: float = 1e-12,
 ) -> ListOrDict[tuple[float, dict[str, Any]]]:
     """
@@ -64,7 +64,7 @@ def estimate_observables(
 
     if len(observables_list) > 0:
         observables_list, mask = _handle_zero_ops(observables_list)
-        parameter_values_: Sequence[float] | None = parameter_values
+        parameter_values_: ntp.NDArray[np.float64] | None = parameter_values
         try:
             estimator_job = estimator.run([(quantum_state, observables_list, parameter_values_)])
             estimator_result = estimator_job.result()[0]

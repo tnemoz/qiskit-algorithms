@@ -13,13 +13,12 @@
 """Test VQD"""
 
 import unittest
-from test import QiskitAlgorithmsTestCase
 
 import numpy as np
 from ddt import data, ddt, idata, unpack
 from qiskit import QuantumCircuit, generate_preset_pass_manager
-from qiskit.circuit.library import n_local, real_amplitudes, RealAmplitudes
-from qiskit.primitives import StatevectorSampler, StatevectorEstimator
+from qiskit.circuit.library import RealAmplitudes, n_local, real_amplitudes
+from qiskit.primitives import StatevectorEstimator, StatevectorSampler
 from qiskit.providers.fake_provider import GenericBackendV2
 from qiskit.quantum_info import SparsePauliOp
 
@@ -28,7 +27,7 @@ from qiskit_algorithms.eigensolvers import VQD, VQDResult
 from qiskit_algorithms.optimizers import COBYLA, L_BFGS_B, SLSQP, SPSA
 from qiskit_algorithms.state_fidelities import ComputeUncompute
 from qiskit_algorithms.utils import algorithm_globals
-
+from test import QiskitAlgorithmsTestCase  # pylint: disable=wrong-import-order
 
 H2_SPARSE_PAULI = SparsePauliOp.from_list(
     [

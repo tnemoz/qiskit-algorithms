@@ -37,8 +37,8 @@ def _noop(*args, **kargs):
 class QiskitAlgorithmsTestCase(unittest.TestCase, ABC):
     """Optimization Test Case"""
 
-    moduleName = None
-    log = None
+    moduleName: str | None = None
+    log: logging.Logger | None = None
 
     def setUp(self) -> None:
         warnings.filterwarnings("default", category=DeprecationWarning)

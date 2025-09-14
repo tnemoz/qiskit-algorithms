@@ -14,17 +14,16 @@
 """Test QGT."""
 
 import unittest
-from test import QiskitAlgorithmsTestCase
 
-from ddt import ddt, data
 import numpy as np
-
+from ddt import data, ddt
 from qiskit import QuantumCircuit, generate_preset_pass_manager
 from qiskit.circuit import Parameter
 from qiskit.circuit.library import real_amplitudes
 from qiskit.primitives import StatevectorEstimator
 
 from qiskit_algorithms.gradients import DerivativeType, LinCombQGT, ReverseQGT
+from test import QiskitAlgorithmsTestCase  # pylint: disable=wrong-import-order
 
 from .logging_primitives import LoggingEstimator
 

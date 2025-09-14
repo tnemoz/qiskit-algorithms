@@ -13,11 +13,14 @@
 """Types used by the qiskit-algorithms package."""
 from __future__ import annotations
 
-from typing import Any, Protocol, overload
+from typing import Any, Protocol, TypeAlias, overload
 
 from qiskit import QuantumCircuit
+from qiskit.quantum_info import Pauli, SparsePauliOp
 
-_Circuits = list[QuantumCircuit] | QuantumCircuit
+EVAL_OBSERVABLE = SparsePauliOp | Pauli
+
+_Circuits: TypeAlias = list[QuantumCircuit] | QuantumCircuit
 
 
 class Transpiler(Protocol):

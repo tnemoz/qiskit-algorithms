@@ -14,17 +14,16 @@
 """Test QFI."""
 
 import unittest
-from test import QiskitAlgorithmsTestCase
 
-from ddt import ddt, data
 import numpy as np
-
+from ddt import data, ddt
 from qiskit import QuantumCircuit
 from qiskit.circuit import Parameter
 from qiskit.circuit.parametervector import ParameterVector
 from qiskit.primitives import StatevectorEstimator
 
-from qiskit_algorithms.gradients import LinCombQGT, ReverseQGT, QFI, DerivativeType
+from qiskit_algorithms.gradients import QFI, DerivativeType, LinCombQGT, ReverseQGT
+from test import QiskitAlgorithmsTestCase  # pylint: disable=wrong-import-order
 
 
 @ddt

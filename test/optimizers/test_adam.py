@@ -12,13 +12,12 @@
 
 """Tests for the ADAM optimizer."""
 
-from test import QiskitAlgorithmsTestCase
-
-from ddt import ddt, data
 import numpy as np
+from ddt import data, ddt
 
 from qiskit_algorithms.optimizers import ADAM, Optimizer
 from qiskit_algorithms.utils import algorithm_globals
+from test import QiskitAlgorithmsTestCase  # pylint: disable=wrong-import-order
 
 
 @ddt

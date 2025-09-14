@@ -13,21 +13,22 @@
 """Test the quantum amplitude estimation algorithm."""
 
 import unittest
-from test import QiskitAlgorithmsTestCase
+
 import numpy as np
-from ddt import ddt, idata, data, unpack
-from qiskit import QuantumRegister, QuantumCircuit, generate_preset_pass_manager
+from ddt import data, ddt, idata, unpack
+from qiskit import QuantumCircuit, QuantumRegister, generate_preset_pass_manager
 from qiskit.circuit.library import QFT, GroverOperator
-from qiskit.quantum_info import Operator, Statevector
 from qiskit.primitives import StatevectorSampler
+from qiskit.quantum_info import Operator, Statevector
 
 from qiskit_algorithms import (
     AmplitudeEstimation,
-    MaximumLikelihoodAmplitudeEstimation,
-    IterativeAmplitudeEstimation,
-    FasterAmplitudeEstimation,
     EstimationProblem,
+    FasterAmplitudeEstimation,
+    IterativeAmplitudeEstimation,
+    MaximumLikelihoodAmplitudeEstimation,
 )
+from test import QiskitAlgorithmsTestCase  # pylint: disable=wrong-import-order
 
 
 class BernoulliStateIn(QuantumCircuit):

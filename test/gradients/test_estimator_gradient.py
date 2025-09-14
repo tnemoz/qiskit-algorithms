@@ -14,29 +14,28 @@
 """Test Estimator Gradients"""
 
 import unittest
-from test import QiskitAlgorithmsTestCase
 
 import numpy as np
-from ddt import ddt, data, unpack
+from ddt import data, ddt, unpack
 from qiskit import QuantumCircuit
 from qiskit.circuit import Parameter
 from qiskit.circuit.library import efficient_su2, real_amplitudes
 from qiskit.circuit.library.standard_gates import RXXGate, RYYGate, RZXGate, RZZGate
 from qiskit.primitives import StatevectorEstimator
-from qiskit.quantum_info import SparsePauliOp, Pauli
+from qiskit.providers.fake_provider import GenericBackendV2
+from qiskit.quantum_info import Pauli, SparsePauliOp
 from qiskit.quantum_info.random import random_pauli_list
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
-from qiskit.providers.fake_provider import GenericBackendV2
-
 
 from qiskit_algorithms.gradients import (
+    DerivativeType,
     FiniteDiffEstimatorGradient,
     LinCombEstimatorGradient,
     ParamShiftEstimatorGradient,
-    SPSAEstimatorGradient,
     ReverseEstimatorGradient,
-    DerivativeType,
+    SPSAEstimatorGradient,
 )
+from test import QiskitAlgorithmsTestCase  # pylint: disable=wrong-import-order
 
 from .logging_primitives import LoggingEstimator
 

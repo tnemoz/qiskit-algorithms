@@ -13,13 +13,8 @@
 """Test solver of linear equations."""
 
 import unittest
-from test import QiskitAlgorithmsTestCase
 
-# fmt: off
-from test.time_evolvers.variational.solvers.expected_results.\
-    test_varqte_linear_solver_expected_1 import expected_metric_res_1
 # fmt: on
-
 import numpy as np
 from qiskit.circuit.library import efficient_su2
 from qiskit.quantum_info import SparsePauliOp
@@ -29,6 +24,13 @@ from qiskit_algorithms.time_evolvers.variational import (
 )
 from qiskit_algorithms.time_evolvers.variational.solvers.var_qte_linear_solver import (
     VarQTELinearSolver,
+)
+from test import QiskitAlgorithmsTestCase  # pylint: disable=wrong-import-order
+
+# fmt: off
+from test.time_evolvers.variational.solvers.expected_results.\
+    test_varqte_linear_solver_expected_1 import (
+    expected_metric_res_1,  # pylint: disable=wrong-import-order
 )
 
 

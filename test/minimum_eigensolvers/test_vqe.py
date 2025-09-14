@@ -13,21 +13,19 @@
 """Test the variational quantum eigensolver algorithm."""
 
 import unittest
-from test import QiskitAlgorithmsTestCase
-
 from functools import partial
-import numpy as np
-from scipy.optimize import minimize as scipy_minimize
-from ddt import data, ddt
 
+import numpy as np
+from ddt import data, ddt
 from qiskit import QuantumCircuit, generate_preset_pass_manager
 
 # TODO: RealAmplitudes is still imported to check the resize of the ansatz, remove when this
 #  feature isn't supported anymore
-from qiskit.circuit.library import real_amplitudes, RealAmplitudes, n_local
-from qiskit.quantum_info import SparsePauliOp, Operator, Pauli
-from qiskit.providers.fake_provider import GenericBackendV2
+from qiskit.circuit.library import RealAmplitudes, n_local, real_amplitudes
 from qiskit.primitives import StatevectorEstimator, StatevectorSampler
+from qiskit.providers.fake_provider import GenericBackendV2
+from qiskit.quantum_info import Operator, Pauli, SparsePauliOp
+from scipy.optimize import minimize as scipy_minimize
 
 from qiskit_algorithms import AlgorithmError
 from qiskit_algorithms.gradients import ParamShiftEstimatorGradient
@@ -35,18 +33,18 @@ from qiskit_algorithms.minimum_eigensolvers import VQE
 from qiskit_algorithms.optimizers import (
     CG,
     COBYLA,
-    GradientDescent,
     L_BFGS_B,
-    OptimizerResult,
     P_BFGS,
     QNSPSA,
     SLSQP,
     SPSA,
     TNC,
+    GradientDescent,
+    OptimizerResult,
 )
 from qiskit_algorithms.state_fidelities import ComputeUncompute
 from qiskit_algorithms.utils import algorithm_globals
-
+from test import QiskitAlgorithmsTestCase  # pylint: disable=wrong-import-order
 
 THREE_QUBITS_BACKEND = GenericBackendV2(num_qubits=3, coupling_map=[[0, 1], [1, 2]], seed=54)
 

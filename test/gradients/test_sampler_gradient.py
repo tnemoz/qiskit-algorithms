@@ -14,10 +14,9 @@
 """Test Sampler Gradients"""
 
 import unittest
-from test import QiskitAlgorithmsTestCase
 
 import numpy as np
-from ddt import ddt, data, unpack
+from ddt import data, ddt, unpack
 from qiskit import QuantumCircuit, generate_preset_pass_manager
 from qiskit.circuit import Parameter
 from qiskit.circuit.library import efficient_su2, real_amplitudes
@@ -31,6 +30,8 @@ from qiskit_algorithms.gradients import (
     ParamShiftSamplerGradient,
     SPSASamplerGradient,
 )
+from test import QiskitAlgorithmsTestCase  # pylint: disable=wrong-import-order
+
 from .logging_primitives import LoggingSampler
 
 gradient_factories = [

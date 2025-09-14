@@ -13,15 +13,14 @@
 """Test NumPyEigensolver"""
 
 import unittest
-from test import QiskitAlgorithmsTestCase
 
 import numpy as np
 from ddt import data, ddt
+from qiskit.quantum_info import Operator, Pauli, ScalarOp, SparsePauliOp
 
-from qiskit.quantum_info import Operator, SparsePauliOp, Pauli, ScalarOp
-
-from qiskit_algorithms.eigensolvers import NumPyEigensolver
 from qiskit_algorithms import AlgorithmError
+from qiskit_algorithms.eigensolvers import NumPyEigensolver
+from test import QiskitAlgorithmsTestCase  # pylint: disable=wrong-import-order
 
 H2_SPARSE_PAULI = SparsePauliOp(
     ["II", "ZI", "IZ", "ZZ", "XX"],

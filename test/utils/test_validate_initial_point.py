@@ -12,13 +12,12 @@
 
 """Test validate initial point."""
 
-from test import QiskitAlgorithmsTestCase
-
 from unittest.mock import Mock
 
 import numpy as np
 
 from qiskit_algorithms.utils import algorithm_globals, validate_initial_point
+from test import QiskitAlgorithmsTestCase  # pylint: disable=wrong-import-order
 
 
 class TestValidateInitialPoint(QiskitAlgorithmsTestCase):

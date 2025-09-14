@@ -12,14 +12,13 @@
 
 """Test phase estimation"""
 import unittest
-from test import QiskitAlgorithmsTestCase
 
 import numpy as np
-from ddt import ddt, data, unpack
+from ddt import data, ddt, unpack
 from qiskit import QuantumCircuit
-from qiskit.circuit.library import HGate, XGate, IGate, ZGate
-from qiskit.primitives import StatevectorSampler, BaseSamplerV2
-from qiskit.quantum_info import SparsePauliOp, Pauli, Statevector, Operator
+from qiskit.circuit.library import HGate, IGate, XGate, ZGate
+from qiskit.primitives import BaseSamplerV2, StatevectorSampler
+from qiskit.quantum_info import Operator, Pauli, SparsePauliOp, Statevector
 from qiskit.synthesis import MatrixExponential, SuzukiTrotter
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
@@ -29,6 +28,7 @@ from qiskit_algorithms import (
     PhaseEstimation,
     PhaseEstimationScale,
 )
+from test import QiskitAlgorithmsTestCase  # pylint: disable=wrong-import-order
 
 
 @ddt

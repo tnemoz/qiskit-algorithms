@@ -16,7 +16,7 @@ from __future__ import annotations
 import logging
 import re
 import warnings
-from collections.abc import Iterable, Sequence
+from collections.abc import Sequence
 from enum import Enum
 
 import numpy as np
@@ -26,6 +26,7 @@ from qiskit.quantum_info import SparsePauliOp
 from qiskit.quantum_info.operators.base_operator import BaseOperator
 from qiskit.version import get_version_info as get_qiskit_version_info
 
+from qiskit_algorithms.custom_types import EVAL_OBSERVABLE
 from qiskit_algorithms.exceptions import AlgorithmError
 from qiskit_algorithms.list_or_dict import ListOrDict
 from qiskit_algorithms.utils.validation import validate_min
@@ -296,7 +297,7 @@ class AdaptVQE(VariationalAlgorithm, MinimumEigensolver):
     def compute_minimum_eigenvalue(
         self,
         operator: BaseOperator,
-        aux_operators: ListOrDict[BaseOperator] | None = None,
+        aux_operators: ListOrDict[EVAL_OBSERVABLE] | None = None,
     ) -> AdaptVQEResult:
         """Computes the minimum eigenvalue.
 
@@ -433,19 +434,23 @@ class AdaptVQE(VariationalAlgorithm, MinimumEigensolver):
         # once finished evaluate auxiliary operators if any
         if aux_operators is not None:
             if self.solver.ansatz.layout is not None:
-                key_op_iterator: Iterable[tuple[str | int, BaseOperator]]
+                converted: ListOrDict[EVAL_OBSERVABLE]
                 if isinstance(aux_operators, list):
-                    key_op_iterator = enumerate(aux_operators)
-                    # Dummy placeholder
-                    converted: ListOrDict[BaseOperator] = [
-                        SparsePauliOp.from_list([("I", 0)])
-                    ] * len(aux_operators)
+                    converted = []
+                    for op in aux_operators:
+                        if op is not None:
+                            converted.append(op.apply_layout(self.solver.ansatz.layout))
+                        else:
+                            converted.append(
+                                SparsePauliOp.from_list([("I", 0)]).apply_layout(
+                                    self.solver.ansatz.layout
+                                )
+                            )  # Dummy placeholder
                 else:
-                    key_op_iterator = aux_operators.items()
                     converted = {}
-                for key, op in key_op_iterator:
-                    if op is not None:
-                        converted[key] = op.apply_layout(self.solver.ansatz.layout)
+                    for key, op in aux_operators.items():
+                        if op is not None:
+                            converted[key] = op.apply_layout(self.solver.ansatz.layout)
 
                 aux_operators = converted
             aux_values = estimate_observables(

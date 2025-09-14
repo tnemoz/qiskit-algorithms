@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import logging
 import warnings
-from collections.abc import Callable, Iterable
+from collections.abc import Callable
 from time import time
 from typing import Any
 
@@ -28,7 +28,7 @@ from qiskit.quantum_info.operators.base_operator import BaseOperator
 
 from qiskit_algorithms.gradients import BaseEstimatorGradient
 
-from ..custom_types import Transpiler
+from ..custom_types import EVAL_OBSERVABLE, Transpiler
 from ..exceptions import AlgorithmError
 from ..list_or_dict import ListOrDict
 from ..observables_evaluator import estimate_observables
@@ -194,8 +194,8 @@ class VQE(VariationalAlgorithm, MinimumEigensolver):
 
     def compute_minimum_eigenvalue(
         self,
-        operator: BaseOperator,
-        aux_operators: ListOrDict[BaseOperator] | None = None,
+        operator: EVAL_OBSERVABLE,
+        aux_operators: ListOrDict[EVAL_OBSERVABLE] | None = None,
     ) -> VQEResult:
         if self.ansatz.layout is not None:
             operator = operator.apply_layout(self.ansatz.layout)
@@ -254,28 +254,29 @@ class VQE(VariationalAlgorithm, MinimumEigensolver):
                 # ansatz, before transpilation
                 zero_op = SparsePauliOp.from_list(
                     [("I" * len(self.ansatz.layout.final_index_layout()), 0)]
-                )
-                key_op_iterator: Iterable[tuple[str | int, BaseOperator]]
+                ).apply_layout(self.ansatz.layout)
+                converted: ListOrDict[EVAL_OBSERVABLE]
                 if isinstance(aux_operators, list):
-                    key_op_iterator = enumerate(aux_operators)
-                    converted: ListOrDict[BaseOperator] = [zero_op] * len(aux_operators)
+                    converted = []
+                    for op in aux_operators:
+                        if op is not None and op != 0:
+                            converted.append(op.apply_layout(self.ansatz.layout))
+                        else:
+                            converted.append(zero_op)
                 else:
-                    key_op_iterator = aux_operators.items()
                     converted = {}
-                for key, op in key_op_iterator:
-                    if op is not None:
-                        converted[key] = (
-                            zero_op.apply_layout(self.ansatz.layout)
-                            if op == 0
-                            else op.apply_layout(self.ansatz.layout)
-                        )
+                    for key, op in aux_operators.items():
+                        if op is not None:
+                            converted[key] = (
+                                zero_op if op == 0 else op.apply_layout(self.ansatz.layout)
+                            )
 
                 aux_operators = converted
             aux_operators_evaluated = estimate_observables(
                 self.estimator,
                 self.ansatz,
                 aux_operators,
-                optimizer_result.x,  # type: ignore[arg-type]
+                optimizer_result.x,
             )
         else:
             aux_operators_evaluated = None

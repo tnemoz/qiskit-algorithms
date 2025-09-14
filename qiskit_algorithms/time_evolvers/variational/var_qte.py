@@ -24,7 +24,9 @@ from qiskit.primitives import BaseEstimatorV2
 from qiskit.quantum_info.operators.base_operator import BaseOperator
 from scipy.integrate import OdeSolver
 
-from ...custom_types import Transpiler
+from qiskit_algorithms.list_or_dict import ListOrDict
+
+from ...custom_types import EVAL_OBSERVABLE, Transpiler
 from ...observables_evaluator import estimate_observables
 from ..time_evolution_problem import TimeEvolutionProblem
 from .solvers.ode.forward_euler_solver import ForwardEulerSolver
@@ -183,16 +185,22 @@ class VarQTE(ABC):
         observables = []
         if evolution_problem.aux_operators is not None:
             for values in param_values:
-                # cannot batch evaluation because estimate_observables
-                # only accepts single circuits
+                # TODO: cannot batch evaluation because estimate_observables
+                #  only accepts single circuits
                 evol_state = self.ansatz.assign_parameters(
                     dict(zip(init_state_param_dict.keys(), values))
                 )
                 if self.ansatz.layout is not None:
-                    aux_operators = [
-                        obs.apply_layout(self.ansatz.layout)
-                        for obs in evolution_problem.aux_operators
-                    ]
+                    if isinstance(evolution_problem.aux_operators, dict):
+                        aux_operators: ListOrDict[EVAL_OBSERVABLE] = {
+                            key: obs.apply_layout(self.ansatz.layout)
+                            for key, obs in evolution_problem.aux_operators.items()
+                        }
+                    else:
+                        aux_operators = [
+                            obs.apply_layout(self.ansatz.layout)
+                            for obs in evolution_problem.aux_operators
+                        ]
                 else:
                     aux_operators = evolution_problem.aux_operators
                 observable = estimate_observables(

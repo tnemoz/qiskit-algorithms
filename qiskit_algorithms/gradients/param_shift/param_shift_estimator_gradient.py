@@ -20,6 +20,8 @@ from collections.abc import Sequence
 from qiskit.circuit import Parameter, QuantumCircuit
 from qiskit.quantum_info.operators.base_operator import BaseOperator
 
+from qiskit_algorithms.custom_types import EVAL_OBSERVABLE
+
 from ...exceptions import AlgorithmError
 from ..base.base_estimator_gradient import BaseEstimatorGradient
 from ..base.estimator_gradient_result import EstimatorGradientResult
@@ -56,7 +58,7 @@ class ParamShiftEstimatorGradient(BaseEstimatorGradient):
     def _run(
         self,
         circuits: Sequence[QuantumCircuit],
-        observables: Sequence[BaseOperator],
+        observables: Sequence[EVAL_OBSERVABLE],
         parameter_values: Sequence[Sequence[float]],
         parameters: Sequence[Sequence[Parameter]],
         *,

@@ -30,7 +30,7 @@ class VarQTEOdeSolver:
         self,
         init_params: Sequence[float],
         ode_function: AbstractOdeFunction,
-        ode_solver: OdeSolver | str = ForwardEulerSolver,
+        ode_solver: type[OdeSolver] | str = ForwardEulerSolver,
         num_timesteps: int | None = None,
     ) -> None:
         """
@@ -72,7 +72,7 @@ class VarQTEOdeSolver:
         if self._ode_solver == ForwardEulerSolver:
             solve = partial(solve_ivp, num_t_steps=num_timesteps)
         else:
-            solve = solve_ivp
+            solve = partial(solve_ivp)
 
         sol = solve(
             self._ode_function,

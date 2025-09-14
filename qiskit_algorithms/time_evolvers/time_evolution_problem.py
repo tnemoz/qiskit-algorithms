@@ -18,7 +18,8 @@ from collections.abc import Mapping
 from qiskit import QuantumCircuit
 from qiskit.circuit import Parameter
 from qiskit.quantum_info import Statevector
-from qiskit.quantum_info.operators.base_operator import BaseOperator
+
+from qiskit_algorithms.custom_types import EVAL_OBSERVABLE
 
 from ..list_or_dict import ListOrDict
 
@@ -49,10 +50,10 @@ class TimeEvolutionProblem:
     # pylint: disable=too-many-positional-arguments
     def __init__(
         self,
-        hamiltonian: BaseOperator,
+        hamiltonian: EVAL_OBSERVABLE,
         time: float,
         initial_state: QuantumCircuit | Statevector | None = None,
-        aux_operators: ListOrDict[BaseOperator] | None = None,
+        aux_operators: ListOrDict[EVAL_OBSERVABLE] | None = None,
         truncation_threshold: float = 1e-12,
         t_param: Parameter | None = None,
         param_value_map: Mapping[Parameter, complex] | None = None,
