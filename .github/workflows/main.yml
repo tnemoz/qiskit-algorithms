@@ -24,6 +24,8 @@ on:
   schedule:
     # run every day at 1AM
     - cron: '0 1 * * *'
+  workflow_dispatch:
+
 
 concurrency:
   group: ${{ github.repository }}-${{ github.ref }}-${{ github.head_ref }}-${{ github.workflow }}
@@ -31,7 +33,6 @@ concurrency:
 
 jobs:
   Checks:
-    if: github.repository_owner == 'qiskit-community'
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -86,37 +87,14 @@ jobs:
           make style
         if: ${{ !cancelled() }}
         shell: bash
-      - name: Run make html
-        run: |
-          make clean_sphinx
-          make html
-          cd docs/_build/html
-          mkdir artifacts
-          tar -zcvf artifacts/documentation.tar.gz --exclude=./artifacts .
-        if: ${{ !cancelled() }}
-        shell: bash
-      - name: Run upload documentation
-        uses: actions/upload-artifact@v5
-        with:
-          name: documentation
-          path: docs/_build/html/artifacts/documentation.tar.gz
-        if: ${{ !cancelled() }}
-      - run: make doctest
-        if: ${{ !cancelled() }}
-        shell: bash
   Algorithms:
-    if: github.repository_owner == 'qiskit-community'
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-latest]
-        python-version: ['3.10', 3.11, 3.12, 3.13, 3.14]
+        python-version: ['3.10', 3.14]
         include:
-          - os: macos-latest
-            python-version: 3.10
-          - os: macos-latest
-            python-version: 3.14
           - os: windows-latest
             python-version: 3.10
           - os: windows-latest
@@ -165,150 +143,3 @@ jobs:
         with:
           name: ${{ matrix.os }}-${{ matrix.python-version }}
           path: ./ci-artifact-data/*
-  Monitor_Qiskit_Main:
-    if: github.repository_owner == 'qiskit-community' && (github.ref == 'refs/heads/main' || github.base_ref == 'main')
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest]
-        python-version: [3.10, 3.14]
-    steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-python@v6
-        with:
-          python-version: ${{ matrix.python-version }}
-          cache: 'pip'
-          cache-dependency-path: |
-            setup.py
-            requirements.txt
-            requirements-dev.txt
-      - uses: ./.github/actions/install-algorithms
-      - run: pip uninstall -y qiskit
-      - uses: ./.github/actions/install-main-dependencies
-        with:
-          os: ${{ matrix.os }}
-          python-version: ${{ matrix.python-version }}
-          qiskit-main: "true"
-      - run: make lint
-        shell: bash
-#     - run: make mypy
-#       shell: bash
-      - name: Algorithms Unit Tests under Python with Qiskit main ${{ matrix.python-version }}
-        uses: ./.github/actions/run-tests
-        with:
-          os: ${{ matrix.os }}
-          event-name: ${{ github.event_name }}
-          run-slow: ${{ contains(github.event.pull_request.labels.*.name, 'run_slow') }}
-          python-version: ${{ matrix.python-version }}
-        if: ${{ !cancelled() }}
-  Tutorials:
-    if: github.repository_owner == 'qiskit-community'
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest]
-        python-version: [3.10, 3.14]
-    steps:
-      - uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-python@v6
-        with:
-          python-version: ${{ matrix.python-version }}
-          cache: 'pip'
-          cache-dependency-path: |
-            setup.py
-            requirements.txt
-            requirements-dev.txt
-      - uses: ./.github/actions/install-main-dependencies
-        with:
-          os: ${{ matrix.os }}
-          python-version: ${{ matrix.python-version }}
-        if: ${{ !startsWith(github.ref, 'refs/heads/stable') && !startsWith(github.base_ref, 'stable/') }}
-      - uses: ./.github/actions/install-algorithms
-      - name: Install Dependencies
-        run: |
-          pip install jupyter qiskit[visualization]
-          sudo apt-get install -y pandoc graphviz
-          echo "earliest_version: 0.1.0" >> releasenotes/config.yaml
-        shell: bash
-      - name: Run Qiskit Algorithms Tutorials
-        env:
-          QISKIT_PARALLEL: False
-          QISKIT_DOCS_BUILD_TUTORIALS: 'always'
-        run: |
-          make html
-          cd docs/_build/html
-          mkdir artifacts
-          tar -zcvf artifacts/tutorials.tar.gz --exclude=./artifacts .
-        shell: bash
-      - name: Run upload tutorials
-        uses: actions/upload-artifact@v5
-        with:
-          name: tutorials${{ matrix.python-version }}
-          path: docs/_build/html/artifacts/tutorials.tar.gz
-  Deprecation_Messages_and_Coverage:
-    if: github.repository_owner == 'qiskit-community'
-    needs: [Checks, Algorithms, Tutorials]
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.10]
-    steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-python@v6
-        with:
-          python-version: ${{ matrix.python-version }}
-      - uses: actions/download-artifact@v6
-        with:
-          name: ubuntu-latest-3.10
-          path: /tmp/u310
-      - uses: actions/download-artifact@v6
-        with:
-          name: ubuntu-latest-3.11
-          path: /tmp/u311
-      - uses: actions/download-artifact@v6
-        with:
-          name: ubuntu-latest-3.12
-          path: /tmp/u312
-      - uses: actions/download-artifact@v6
-        with:
-          name: ubuntu-latest-3.13
-          path: /tmp/u313
-      - uses: actions/download-artifact@v6
-        with:
-          name: ubuntu-latest-3.14
-          path: /tmp/u314
-      - uses: actions/download-artifact@v6
-        with:
-          name: macos-latest-3.10
-          path: /tmp/m310
-      - uses: actions/download-artifact@v6
-        with:
-          name: macos-latest-3.14
-          path: /tmp/m314
-      - uses: actions/download-artifact@v6
-        with:
-          name: windows-latest-3.10
-          path: /tmp/w310
-      - uses: actions/download-artifact@v6
-        with:
-          name: windows-latest-3.14
-          path: /tmp/w314
-      - name: Install Dependencies
-        run: pip install -U coverage coveralls diff-cover
-        shell: bash
-      - name: Combined Deprecation Messages
-        run: |
-          sort -f -u /tmp/u310/alg.dep /tmp/u311/alg.dep /tmp/u312/alg.dep /tmp/u313/alg.dep /tmp/u314/alg.dep /tmp/m310/alg.dep /tmp/m314/alg.dep /tmp/w310/alg.dep /tmp/w314/alg.dep || true
-        shell: bash
-      - name: Coverage combine
-        run: coverage3 combine /tmp/u310/alg.dat
-        shell: bash
-      - name: Upload to Coveralls
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: coveralls --service=github
-        shell: bash
